@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NetPulse - Speed Test</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Internet Speed Test</h1>
+    </header>
+    <main>
+      <div class="speedometer">
+        <div class="progress-bar"></div>
+        <div class="speed-results">
+          <p>Download Speed: <span id="downloadSpeed">0 Mbps</span></p>
+          <p>Upload Speed: <span id="uploadSpeed">0 Mbps</span></p>
+        </div>
+      </div>
+      <button id="startTestBtn">Start Test</button>
+      <button id="backToHomeBtn" onclick="window.location.href='index.html'">Back to Home</button>
+      <button id="themeToggleBtn">🌙 Dark Mode</button>
+    </main>
+    <footer>
+      <p>Contact Me:</p>
+      <ul>
+        <li>Phone: <a href="tel:+380631318771">+38 (063) 131 87 71</a></li>
+        <li>Email: <a href="mailto:kisjlyk97@gmail.com">kisjlyk97@gmail.com</a></li>
+        <li>Telegram: <a href="https://t.me/ampersann" target="_blank">@ampersann</a></li>
+      </ul>
+    </footer>
+  </div>
+  <script src="speed.js"></script>
+  <script src="theme.js"></script>
+</body>
+</html>
