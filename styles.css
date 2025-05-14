@@ -266,3 +266,8 @@ body.light-mode .network-info {
 body.light-mode .network-info strong {
   color: #1e3c72; /* Dark blue for light mode */
 }
+
+/* Забороняємо анімацію, поки не знято клас preload */
+body.preload {
+  animation: none !important;
+}
