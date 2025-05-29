@@ -4,11 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("startTestBtn");
 
   const s = new Speedtest({
-  server: {
-    url: "https://netpulse-backend.onrender.com/"
-  }
+    server: {
+      url: "https://netpulse-backend.onrender.com/"
+    }
   });
-
 
   s.onupdate = data => {
     if (data.dlStatus) {
