@@ -1,7 +1,7 @@
 // ping.js
 
-document.getElementById("startPingBtn").addEventListener("click", function () {
-    document.getElementById("pingResult").textContent = "Вимірювання...";
+document.getElementById("testPingBtn").addEventListener("click", function () {
+    document.getElementById("pingTime").textContent = "Вимірювання...";
 
     measurePing("https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_150x54dp.png");
 });
