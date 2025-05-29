@@ -1,12 +1,9 @@
-// ping.js
-
 document.getElementById("testPingBtn").addEventListener("click", function () {
     document.getElementById("pingTime").textContent = "Вимірювання...";
 
     measurePing("https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_150x54dp.png");
 });
 
-// Function to simulate a ping test
 function measurePing(url, count = 5) {
     const results = [];
 
@@ -31,33 +28,9 @@ function measurePing(url, count = 5) {
         } else {
             const valid = results.filter(r => r !== null);
             const avg = valid.reduce((a, b) => a + b, 0) / valid.length;
-            console.log(`Ping: ${avg.toFixed(2)} ms`);
+            document.getElementById("pingTime").textContent = `${avg.toFixed(2)} ms`;
         }
     }
 
     pingOnce();
 }
-
-
-// Function to run the ping test
-async function runPingTest() {
-  // Reset results
-  pingTimeElement.textContent = '0 ms';
-
-  // Disable the button during the test
-  testPingBtn.disabled = true;
-  testPingBtn.textContent = 'Testing...';
-
-  // Get the ping result
-  const pingTime = await simulatePingTest();
-
-  // Update the result
-  pingTimeElement.textContent = `${pingTime} ms`;
-
-  // Re-enable the button
-  testPingBtn.disabled = false;
-  testPingBtn.textContent = 'Test Ping';
-}
-
-// Event Listener
-testPingBtn.addEventListener('click', runPingTest);
