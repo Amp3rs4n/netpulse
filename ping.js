@@ -25,8 +25,25 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   startBtn.addEventListener("click", () => {
-    startBtn.disabled = true;
-    startBtn.textContent = "Testing...";
-    s.start("ping"); // ✅ лише один запуск
-  });
+  startBtn.disabled = true;
+  startBtn.textContent = "Testing...";
+  
+  const timeout = setTimeout(() => {
+    console.warn("Forcing end due to timeout");
+    s.abort();
+    startBtn.disabled = false;
+    startBtn.textContent = "Start Ping Test (Timeout)";
+  }, 4000); // примусово 4 секунди
+
+  s.onend = () => {
+    clearTimeout(timeout); // прибираємо таймер
+    startBtn.disabled = false;
+    startBtn.textContent = "Start Ping Test";
+  };
+
+  s.setParameter("getIp_ispInfo", false); // забороняє перевірку IP
+  s.setParameter("getIp_ispInfo_distance", ""); // без geo IP
+  s.start("ping");
+});
+
 });
