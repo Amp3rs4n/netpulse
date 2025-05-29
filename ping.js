@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   testPingBtn.addEventListener("click", () => {
     testPingBtn.disabled = true;
     pingTimeElement.textContent = "Вимірювання...";
-    measurePingLive("https://netpulse-backend.onrender.com/ping", 10, 500);
+    measurePingLive("https://netpulse-ping-api.onrender.com/ping", 10, 500);
   });
 
   function measurePingLive(url, count = 10, interval = 500) {
