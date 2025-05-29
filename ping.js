@@ -9,7 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  s.setParameter("count_ping", 20);
+
+
   s.onupdate = data => {
+    console.log("Update:", data);
     if (data.pingStatus) {
       pingEl.textContent = `${parseFloat(data.pingStatus).toFixed(2)} ms`;
     }
@@ -19,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   s.onend = () => {
+    console.log("END reached");
     startBtn.disabled = false;
     startBtn.textContent = "Start Ping Test";
   };
@@ -26,6 +31,18 @@ document.addEventListener("DOMContentLoaded", () => {
   startBtn.addEventListener("click", () => {
     startBtn.disabled = true;
     startBtn.textContent = "Testing...";
+    startBtn.disabled = true;
+    startBtn.textContent = "Testing...";
+    s.start("ping");
+
+// Примусовий fallback
+    setTimeout(() => {
+      if (startBtn.disabled) {
+        s.abort(); // зупинити тест, якщо завис
+        startBtn.disabled = false;
+        startBtn.textContent = "Start Ping Test";
+      } 
+    }, 5000);
     s.start("ping");
   });
 });
