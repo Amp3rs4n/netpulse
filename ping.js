@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   testPingBtn.addEventListener("click", function () {
     pingTime.textContent = "Вимірювання...";
-    measurePing("https://via.placeholder.com/1x1");
+    measurePing("https://upload.wikimedia.org/wikipedia/commons/3/3f/Transparent.gif");
   });
 
   function measurePing(url, count = 5) {
@@ -30,6 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(pingOnce, 200);
       } else {
         const valid = results.filter(r => r !== null);
+        if (valid.length === 0) {
+          pingTime.textContent = "Помилка: пінг не виміряно";
+          return;
+        }
         const avg = valid.reduce((a, b) => a + b, 0) / valid.length;
         pingTime.textContent = `${avg.toFixed(2)} ms`;
         console.log(`Ping: ${avg.toFixed(2)} ms`);
