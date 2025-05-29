@@ -1,44 +1,46 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
+  const pingTimeElement = document.getElementById("pingTime");
   const testPingBtn = document.getElementById("testPingBtn");
-  const pingTime = document.getElementById("pingTime");
 
-  testPingBtn.addEventListener("click", function () {
-    pingTime.textContent = "Вимірювання...";
-    measurePing("https://netpulse-backend.onrender.com/ping");
+  testPingBtn.addEventListener("click", () => {
+    testPingBtn.disabled = true;
+    pingTimeElement.textContent = "Вимірювання...";
+    measurePingLive("https://netpulse-backend.onrender.com/ping", 10, 500);
   });
 
-  function measurePing(url, count = 5) {
+  function measurePingLive(url, count = 10, interval = 500) {
     const results = [];
+    let current = 0;
 
-    function pingOnce() {
+    const intervalId = setInterval(async () => {
       const start = performance.now();
-      fetch(`${url}?cacheBuster=${Math.random()}`)
-        .then(() => {
-          const duration = performance.now() - start;
-          results.push(duration);
-          next();
-        })
-        .catch(() => {
-          results.push(null);
-          next();
-        });
-    }
+      try {
+        await fetch(`${url}?cacheBuster=${Math.random()}`);
+        const end = performance.now();
+        const duration = end - start;
+        results.push(duration);
+        current++;
 
-    function next() {
-      if (results.length < count) {
-        setTimeout(pingOnce, 200);
-      } else {
-        const valid = results.filter(r => r !== null);
-        if (valid.length === 0) {
-          pingTime.textContent = "Помилка: пінг не виміряно";
-          return;
+        pingTimeElement.textContent = `Останній: ${Math.round(duration)} ms`;
+
+        if (current >= count) {
+          clearInterval(intervalId);
+
+          const valid = results.filter(r => !isNaN(r));
+          const avg = valid.reduce((a, b) => a + b, 0) / valid.length;
+          pingTimeElement.textContent = `Середній ping: ${avg.toFixed(2)} ms`;
+          testPingBtn.disabled = false;
         }
-        const avg = valid.reduce((a, b) => a + b, 0) / valid.length;
-        pingTime.textContent = `${avg.toFixed(2)} ms`;
-        console.log(`Ping: ${avg.toFixed(2)} ms`);
-      }
-    }
+      } catch (err) {
+        results.push(NaN);
+        current++;
+        pingTimeElement.textContent = `Помилка: пінг не отримано`;
 
-    pingOnce();
+        if (current >= count) {
+          clearInterval(intervalId);
+          testPingBtn.disabled = false;
+        }
+      }
+    }, interval);
   }
 });
