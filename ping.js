@@ -3,14 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const jitterEl = document.getElementById("jitterValue");
   const startBtn = document.getElementById("startPingBtn");
 
-  const s = new Speedtest({
-    server: {
-      url: "https://netpulse-backend.onrender.com/"
-    }
-  });
-
+  const s = new Speedtest();
+  s.setParameter("serverURL", "https://netpulse-backend.onrender.com/");
   s.setParameter("count_ping", 5);
-
+  s.setParameter("time_ulGraceTime", 0.5); // додатково прискорює
 
   s.onupdate = data => {
     console.log("Update:", data);
@@ -31,18 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
   startBtn.addEventListener("click", () => {
     startBtn.disabled = true;
     startBtn.textContent = "Testing...";
-    startBtn.disabled = true;
-    startBtn.textContent = "Testing...";
-    s.start("ping");
-
-// Примусовий fallback
-    setTimeout(() => {
-      if (startBtn.disabled) {
-        s.abort(); // зупинити тест, якщо завис
-        startBtn.disabled = false;
-        startBtn.textContent = "Start Ping Test";
-      } 
-    }, 5000);
-    s.start("ping");
+    s.start("ping"); // ✅ лише один запуск
   });
 });
