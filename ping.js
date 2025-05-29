@@ -1,19 +1,43 @@
 // ping.js
 
-// DOM Elements
-const testPingBtn = document.getElementById('testPingBtn');
-const pingTimeElement = document.getElementById('pingTime');
+document.getElementById("startPingBtn").addEventListener("click", function () {
+    document.getElementById("pingResult").textContent = "Вимірювання...";
+
+    measurePing("https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_150x54dp.png");
+});
 
 // Function to simulate a ping test
-function simulatePingTest() {
-  return new Promise((resolve) => {
-    // Simulate network delay
-    setTimeout(() => {
-      const pingTime = (Math.random() * 100).toFixed(0); // Random ping time (0-100 ms)
-      resolve(pingTime);
-    }, 1000); // Simulate a 1-second delay
-  });
+function measurePing(url, count = 5) {
+    const results = [];
+
+    function pingOnce() {
+        const start = performance.now();
+        const img = new Image();
+        img.onload = () => {
+            const duration = performance.now() - start;
+            results.push(duration);
+            next();
+        };
+        img.onerror = () => {
+            results.push(null);
+            next();
+        };
+        img.src = `${url}?cacheBuster=${Math.random()}`;
+    }
+
+    function next() {
+        if (results.length < count) {
+            setTimeout(pingOnce, 200); // трошки паузи
+        } else {
+            const valid = results.filter(r => r !== null);
+            const avg = valid.reduce((a, b) => a + b, 0) / valid.length;
+            console.log(`Ping: ${avg.toFixed(2)} ms`);
+        }
+    }
+
+    pingOnce();
 }
+
 
 // Function to run the ping test
 async function runPingTest() {
