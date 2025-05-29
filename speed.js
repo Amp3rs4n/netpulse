@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const testSpeedBtn = document.getElementById("startTestBtn");
+  const startTestBtn = document.getElementById("startTestBtn");
   const speedResult = document.getElementById("downloadSpeed");
 
-  testSpeedBtn.addEventListener("click", async () => {
+  startTestBtn.addEventListener("click", async () => {
     speedResult.textContent = "Вимірювання...";
     const fileUrl = "https://netpulse-ping-api.onrender.com/testfile";
 
