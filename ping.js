@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.warn("Forcing end due to timeout");
     s.abort();
     startBtn.disabled = false;
-    startBtn.textContent = "Start Ping Test (Timeout)";
+    startBtn.textContent = "Start Ping Test";
   }, 4000); // примусово 4 секунди
 
   s.onend = () => {
