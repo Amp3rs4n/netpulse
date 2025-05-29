@@ -3,8 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const jitterEl = document.getElementById("jitterValue");
   const startBtn = document.getElementById("startPingBtn");
 
-  const s = new Speedtest();
-  s.setParameter("serverURL", "https://netpulse-backend.onrender.com/");
+  const s = new Speedtest({
+  server: {
+    url: "https://netpulse-backend.onrender.com/"
+  }
+  });
+
 
   s.onupdate = data => {
     if (data.pingStatus) {

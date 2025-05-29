@@ -3,8 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const uploadEl = document.getElementById("uploadSpeed");
   const startBtn = document.getElementById("startTestBtn");
 
-  const s = new Speedtest();
-  s.setParameter("serverURL", "https://netpulse-backend.onrender.com/");
+  const s = new Speedtest({
+  server: {
+    url: "https://netpulse-backend.onrender.com/"
+  }
+  });
+
 
   s.onupdate = data => {
     if (data.dlStatus) {
