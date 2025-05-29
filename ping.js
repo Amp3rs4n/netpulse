@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   testPingBtn.addEventListener("click", function () {
     pingTime.textContent = "Вимірювання...";
-    measurePing("https://upload.wikimedia.org/wikipedia/commons/3/3f/Transparent.gif");
+    measurePing("ping.png");
   });
 
   function measurePing(url, count = 5) {
