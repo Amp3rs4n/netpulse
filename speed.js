@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const testSpeedBtn = document.getElementById("testSpeedBtn");
+  const testSpeedBtn = document.getElementById("startSpeedBtn");
   const speedResult = document.getElementById("speedResult");
 
   testSpeedBtn.addEventListener("click", async () => {
