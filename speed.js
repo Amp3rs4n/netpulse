@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const testSpeedBtn = document.getElementById("startSpeedBtn");
-  const speedResult = document.getElementById("speedResult");
+  const testSpeedBtn = document.getElementById("startTestBtn");
+  const speedResult = document.getElementById("downloadSpeed");
 
   testSpeedBtn.addEventListener("click", async () => {
     speedResult.textContent = "Вимірювання...";
     const fileUrl = "https://netpulse-ping-api.onrender.com/testfile";
-    
+
     try {
       const startTime = performance.now();
       const response = await fetch(`${fileUrl}?cacheBuster=${Math.random()}`);
