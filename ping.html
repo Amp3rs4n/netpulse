@@ -13,9 +13,10 @@
     </header>
     <main>
       <div class="ping-results">
-        <p>Ping Time: <span id="pingTime">0 ms</span></p>
+        <p>Ping: <span id="pingValue">0 ms</span></p>
+        <p>Jitter: <span id="jitterValue">0 ms</span></p>
       </div>
-      <button id="testPingBtn">Test Ping</button>
+      <button id="startPingBtn">Start Ping Test</button>
       <button id="backToHomeBtn" onclick="window.location.href='index.html'">Back to Home</button>
       <button id="themeToggleBtn">🌙 Dark Mode</button>
     </main>
@@ -29,6 +30,7 @@
     </footer>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/gh/librespeed/speedtest@latest/speedtest.js"></script>
   <script src="ping.js"></script>
   <script src="theme.js"></script>
   <script src="gradient-sync.js"></script>

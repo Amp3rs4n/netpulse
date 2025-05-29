@@ -1,25 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const startTestBtn = document.getElementById("startTestBtn");
-  const speedResult = document.getElementById("downloadSpeed");
+  const downloadEl = document.getElementById("downloadSpeed");
+  const uploadEl = document.getElementById("uploadSpeed");
+  const startBtn = document.getElementById("startTestBtn");
 
-  startTestBtn.addEventListener("click", async () => {
-    speedResult.textContent = "Вимірювання...";
-    const fileUrl = "https://netpulse-ping-api.onrender.com/testfile";
+  const s = new Speedtest();
 
-    try {
-      const startTime = performance.now();
-      const response = await fetch(`${fileUrl}?cacheBuster=${Math.random()}`);
-      const blob = await response.blob();
-      const endTime = performance.now();
-
-      const fileSizeBytes = blob.size;
-      const durationSeconds = (endTime - startTime) / 1000;
-      const bitsLoaded = fileSizeBytes * 8;
-      const speedMbps = (bitsLoaded / durationSeconds) / 1_000_000;
-
-      speedResult.textContent = `Швидкість завантаження: ${speedMbps.toFixed(2)} Mbit/s`;
-    } catch (error) {
-      speedResult.textContent = "Помилка вимірювання";
+  s.onupdate = data => {
+    if (data.dlStatus) {
+      downloadEl.textContent = `${parseFloat(data.dlStatus).toFixed(2)} Mbps`;
     }
+    if (data.ulStatus) {
+      uploadEl.textContent = `${parseFloat(data.ulStatus).toFixed(2)} Mbps`;
+    }
+  };
+
+  s.onend = () => {
+    startBtn.disabled = false;
+    startBtn.textContent = "Start Test";
+  };
+
+  startBtn.addEventListener("click", () => {
+    startBtn.disabled = true;
+    startBtn.textContent = "Testing...";
+    s.start("dlul"); // download + upload
   });
 });
