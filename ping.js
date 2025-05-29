@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const s = new Speedtest();
   s.setParameter("serverURL", "https://netpulse-backend.onrender.com/");
-  s.setParameter("count_ping", 3);
+  s.setParameter("count_ping", 5);
   s.setParameter("time_ulGraceTime", 0.5); // додатково прискорює
 
   s.onupdate = data => {
