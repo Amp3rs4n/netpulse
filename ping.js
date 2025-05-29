@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  s.setParameter("count_ping", 20);
+  s.setParameter("count_ping", 5);
 
 
   s.onupdate = data => {
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         startBtn.disabled = false;
         startBtn.textContent = "Start Ping Test";
       } 
-    }, 3000);
+    }, 5000);
     s.start("ping");
   });
 });
