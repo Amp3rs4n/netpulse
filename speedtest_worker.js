@@ -1,0 +1,1 @@
+// Simulated LibreSpeed speedtest_worker.js
