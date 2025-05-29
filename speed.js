@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("startTestBtn");
 
   const s = new Speedtest();
+  s.setParameter("serverURL", "https://netpulse-backend.onrender.com/");
 
   s.onupdate = data => {
     if (data.dlStatus) {
