@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         startBtn.disabled = false;
         startBtn.textContent = "Start Ping Test";
       } 
-    }, 5000);
+    }, 3000);
     s.start("ping");
   });
 });
