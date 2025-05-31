@@ -1,7 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   const downloadEl = document.getElementById("downloadSpeed");
   const uploadEl = document.getElementById("uploadSpeed");
-  const startBtn = document.getElementById("startTestBtn");
+  const startBtn = document.getElementById("startSpeedBtn");
+
+  if (!downloadEl || !uploadEl || !startBtn) {
+    console.warn("Елементи інтерфейсу не знайдено. Перевірте HTML.");
+    return;
+  }
 
   const s = new Speedtest({
     server: {
@@ -20,12 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   s.onend = () => {
     startBtn.disabled = false;
-    startBtn.textContent = "Start Test";
+    startBtn.textContent = "Запустити тест";
   };
 
   startBtn.addEventListener("click", () => {
     startBtn.disabled = true;
-    startBtn.textContent = "Testing...";
-    s.start("dlul"); // download + upload
+    startBtn.textContent = "Тестування...";
+    s.start("dlul");
   });
 });
