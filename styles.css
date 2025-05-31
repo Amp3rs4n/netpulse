@@ -5,17 +5,21 @@
   padding: 0;
 }
 
+html {
+  font-size: 18px;
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(145deg, #0d0b1f, #1a1830);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0b0b15, #14142a);
   color: #e0e0f0;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 4rem;
-  font-size: 18px;
+  padding: 3rem 1rem;
 }
 
 .container {
@@ -26,66 +30,59 @@ body {
 
 .title {
   font-size: 3rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-  color: #f1e4ff;
-  text-shadow: 0 0 15px rgba(170, 80, 255, 0.8);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(176, 92, 255, 0.6);
 }
 
 .subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 3rem;
-  color: #b0a9cc;
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+  color: #ccccdd;
 }
 
-.card {
-  background-color: rgba(28, 28, 40, 0.95);
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(128, 0, 255, 0.3);
-  padding: 2rem;
-  margin: 1.5rem 0;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.section {
+  margin-bottom: 2rem;
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 25px rgba(150, 100, 255, 0.4);
+.section h3 {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
 }
 
-.card h3 {
-  font-size: 1.4rem;
-  color: #cdbfff;
-  margin-bottom: 0.8rem;
-}
-
-.card p {
+.section p {
   font-size: 1rem;
-  color: #c0c0d0;
-  margin-bottom: 1.2rem;
+  color: #b0b0c0;
+  margin-bottom: 0.75rem;
 }
 
-.card a {
-  background: #6c3eff;
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  box-shadow: 0 0 8px rgba(108, 62, 255, 0.4);
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+.button-link {
   display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background-color: #4c00ff;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 0 10px rgba(76, 0, 255, 0.4);
+  margin-top: 0.5rem;
 }
 
-.card a:hover {
-  background: #a179ff;
-  box-shadow: 0 0 12px rgba(141, 108, 255, 0.6);
+.button-link:hover {
+  background-color: #693dff;
+  transform: scale(1.05);
+  box-shadow: 0 0 14px rgba(141, 108, 255, 0.7);
 }
 
 .footer {
-  margin-top: 4rem;
-  font-size: 0.9rem;
-  color: #777;
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: #666;
+  text-align: center;
 }
 
 .footer a {
@@ -96,27 +93,4 @@ body {
 .footer a:hover {
   color: #fff;
   text-shadow: 0 0 4px #aaa;
-}
-
-@media screen and (max-width: 768px) {
-  body {
-    font-size: 16px;
-    padding: 2rem;
-  }
-
-  .title {
-    font-size: 2.2rem;
-  }
-
-  .card {
-    padding: 1.5rem;
-  }
-
-  .card h3 {
-    font-size: 1.2rem;
-  }
-
-  .card p, .card a {
-    font-size: 0.95rem;
-  }
 }
