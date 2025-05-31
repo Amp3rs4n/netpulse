@@ -1,37 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NetPulse - Network Info</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body class="preload">
-  <div class="container">
-    <header>
-      <h1>Network Info</h1>
-      <button id="themeToggleBtn">🌙 Dark Mode</button>
-    </header>
-    <main>
-      <div class="network-info">
-        <p><strong>IP Address:</strong> <span id="ipAddress">Loading...</span></p>
-        <p><strong>ISP:</strong> <span id="isp">Loading...</span></p>
-        <p><strong>Location:</strong> <span id="location">Loading...</span></p>
-        <p><strong>Network Type:</strong> <span id="networkType">Loading...</span></p>
-      </div>
-      <button id="backToHomeBtn" onclick="window.location.href='index.html'">Back to Home</button>
-    </main>
-    <footer>
-      <p>Contact Me:</p>
-      <ul>
-        <li>Phone: <a href="tel:+380631318771">+38 (063) 131 87 71</a></li>
-        <li>Email: <a href="mailto:kisjlyk97@gmail.com">kisjlyk97@gmail.com</a></li>
-        <li>Telegram: <a href="https://t.me/ampersann" target="_blank">@ampersann</a></li>
-      </ul>
-    </footer>
-  </div>
-  <script src="network.js"></script>
-  <script src="theme.js"></script>
-  <script src="gradient-sync.js"></script>
-</body>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NetPulse - Мережа</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="preload">
+    <div class="container">
+      <header>
+        <h1>Інформація про мережу</h1>
+        <p class="subtitle">Ваші мережеві параметри та геолокація</p>
+      </header>
+      <main>
+        <div class="network-info">
+          <div class="info-block">
+            <h2>IP-адреса</h2>
+            <p id="ipValue">Завантаження...</p>
+          </div>
+          <div class="info-block">
+            <h2>Інтернет-провайдер</h2>
+            <p id="ispValue">Завантаження...</p>
+          </div>
+          <div class="info-block">
+            <h2>Місто / Геолокація</h2>
+            <p id="locationValue">Завантаження...</p>
+          </div>
+        </div>
+        <div class="controls">
+          <button id="backToHomeBtn" onclick="window.location.href='index.html'">⬅️ Назад</button>
+          <button id="themeToggleBtn">🌗 Змінити тему</button>
+        </div>
+      </main>
+      <footer>
+        <p>Контакти:</p>
+        <ul>
+          <li>Телефон: <a href="tel:+380631318771">+38 (063) 131 87 71</a></li>
+          <li>Email: <a href="mailto:kisjlyk97@gmail.com">kisjlyk97@gmail.com</a></li>
+          <li>Telegram: <a href="https://t.me/ampersann" target="_blank">@ampersann</a></li>
+        </ul>
+      </footer>
+    </div>
+    <script defer src="network.js"></script>
+    <script type="module" src="theme.js"></script>
+    <script type="module" src="gradient-sync.js"></script>
+  </body>
 </html>
