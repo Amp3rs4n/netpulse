@@ -97,6 +97,20 @@ p {
   margin-right: auto;
 }
 
+.horizontal-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 2rem 1rem;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  text-align: center;
+  flex-wrap: wrap;
+}
+
 .container {
   width: 100%;
   max-width: 1000px;
@@ -119,7 +133,8 @@ p {
   flex-wrap: wrap;
 }
 
-.card .result-row {
+.card .result-row,
+.speed-card {
   background: rgba(255, 255, 255, 0.03);
   padding: 1rem 2rem;
   border-radius: 12px;
@@ -135,7 +150,8 @@ p {
   color: #ccc;
 }
 
-.result-row .value {
+.result-row .value,
+.speed-card span {
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--color-text);
@@ -189,5 +205,14 @@ button:active {
   .card {
     flex-direction: column;
     align-items: center;
+  }
+
+  .horizontal-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .horizontal-section .btn {
+    width: 100%;
   }
 }
