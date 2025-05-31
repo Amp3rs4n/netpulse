@@ -136,6 +136,7 @@ button:hover, .btn:hover {
   transform: scale(1.05);
   box-shadow: 0 0 1rem var(--color-button);
   background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
+  text-decoration: none;
 }
 
 button:active {
