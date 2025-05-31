@@ -1,153 +1,143 @@
-/* NetPulse — Стиль відповідно до сучасних UX/UI практик */
+/* styles.css — оновлений для нового дизайну NetPulse */
 
 :root {
-  --bg-dark: #0f0f1a;
-  --bg-light: #f9f9ff;
-  --text-primary: #e4e4f0;
-  --text-secondary: #b6b6cc;
-  --accent: #7366f0;
-  --accent-hover: #9a8cff;
-  --danger: #ff6a6a;
-  --font-sans: 'Inter', sans-serif;
-  --transition: 0.2s ease-in-out;
-  --border-radius: 12px;
-  --card-bg: #1c1c2e;
-  --card-border: rgba(255,255,255,0.05);
-  --shadow: 0 4px 30px rgba(0,0,0,0.1);
+  --color-bg-dark: #0e0e11;
+  --color-bg-light: #ffffff;
+  --color-text-dark: #ffffff;
+  --color-text-light: #1e1e1e;
+  --color-accent: #6c5ce7;
+  --color-accent-soft: #a29bfe;
+  --color-border: #2d2d2d;
+  --font-main: 'Inter', sans-serif;
 }
 
 body {
+  font-family: var(--font-main);
   margin: 0;
-  font-family: var(--font-sans);
-  background-color: var(--bg-dark);
-  color: var(--text-primary);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 2rem;
-  transition: background-color var(--transition);
+  padding: 0;
+  background: var(--color-bg-dark);
+  color: var(--color-text-dark);
+  transition: background 0.3s, color 0.3s;
+}
+
+.theme-light {
+  background: var(--color-bg-light);
+  color: var(--color-text-light);
 }
 
 .container {
-  width: 100%;
-  max-width: 768px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 2rem;
-  background-color: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  align-items: center;
-  justify-content: center;
+  gap: 2rem;
 }
 
-header h1, header h2 {
-  margin: 0;
+.header {
   text-align: center;
+  padding: 2rem 1rem 1rem;
 }
 
-h1 {
-  font-size: 2rem;
+.title {
+  font-size: 2.25rem;
   font-weight: 700;
+  margin: 0;
 }
 
-h2 {
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-}
-
-.button,
-button {
-  padding: 0.75rem 1.5rem;
-  background-color: var(--accent);
-  color: white;
-  font-weight: 600;
-  border: none;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  transition: background-color var(--transition);
-}
-
-button:hover,
-.button:hover {
-  background-color: var(--accent-hover);
-}
-
-a {
-  color: var(--accent);
-  text-decoration: none;
-  transition: color var(--transition);
-}
-
-a:hover {
-  color: var(--accent-hover);
-}
-
-.test-results {
-  width: 100%;
-  background-color: #161625;
-  border-radius: var(--border-radius);
-  padding: 1rem 1.25rem;
-  display: flex;
-  justify-content: space-between;
+.subtitle {
   font-size: 1rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  box-shadow: var(--shadow);
+  font-weight: 400;
+  color: var(--color-accent-soft);
+  margin-top: 0.5rem;
 }
 
-.test-results p {
-  margin: 0.5rem 0;
-  width: 100%;
+.main {
+  padding: 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 
-.nav-links,
-footer ul {
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s;
+}
+
+.network-info {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 2rem;
+}
+
+.network-info li {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 1.1rem;
 }
 
-.nav-links li a {
-  font-weight: 500;
+.label {
+  font-weight: 600;
+  color: var(--color-accent-soft);
 }
 
-footer {
-  margin-top: auto;
+.actions {
   text-align: center;
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  padding: 2rem 0;
 }
 
-footer p {
-  margin: 0.25rem 0;
+.link {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
 }
 
-@media (min-width: 768px) {
-  .nav-links {
-    flex-direction: row;
-    gap: 2rem;
+.link:hover {
+  color: var(--color-accent-soft);
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+button {
+  font-family: var(--font-main);
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: var(--color-accent-soft);
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 1.5rem;
   }
 
-  .test-results {
-    font-size: 1.125rem;
+  .title {
+    font-size: 1.75rem;
   }
 
-  button,
-  .button {
+  .network-info li {
     font-size: 1rem;
   }
 }

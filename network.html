@@ -3,44 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NetPulse - Мережа</title>
+    <title>NetPulse — Інформація про мережу</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   </head>
-  <body class="preload">
-    <div class="container">
-      <header>
-        <h1>Інформація про мережу</h1>
-        <p class="subtitle">Ваші мережеві параметри та геолокація</p>
-      </header>
-      <main>
-        <div class="network-info">
-          <div class="info-block">
-            <h2>IP-адреса</h2>
-            <p id="ipValue">Завантаження...</p>
-          </div>
-          <div class="info-block">
-            <h2>Інтернет-провайдер</h2>
-            <p id="ispValue">Завантаження...</p>
-          </div>
-          <div class="info-block">
-            <h2>Місто / Геолокація</h2>
-            <p id="locationValue">Завантаження...</p>
-          </div>
-        </div>
-        <div class="controls">
-          <button id="backToHomeBtn" onclick="window.location.href='index.html'">⬅️ Назад</button>
-          <button id="themeToggleBtn">🌗 Змінити тему</button>
-        </div>
-      </main>
-      <footer>
-        <p>Контакти:</p>
-        <ul>
-          <li>Телефон: <a href="tel:+380631318771">+38 (063) 131 87 71</a></li>
-          <li>Email: <a href="mailto:kisjlyk97@gmail.com">kisjlyk97@gmail.com</a></li>
-          <li>Telegram: <a href="https://t.me/ampersann" target="_blank">@ampersann</a></li>
+  <body class="theme-dark">
+    <header class="header">
+      <h1 class="title">Інформація про мережу</h1>
+      <p class="subtitle">Деталі вашого інтернет-з'єднання в реальному часі</p>
+    </header>
+
+    <main class="main">
+      <section class="card">
+        <ul class="network-info">
+          <li><span class="label">IP-адреса:</span> <span id="ip">Завантаження...</span></li>
+          <li><span class="label">Провайдер:</span> <span id="isp">Завантаження...</span></li>
+          <li><span class="label">Місто:</span> <span id="city">Завантаження...</span></li>
+          <li><span class="label">Країна:</span> <span id="country">Завантаження...</span></li>
         </ul>
-      </footer>
-    </div>
+        <div class="actions">
+          <a href="index.html" class="link">← На головну</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2025 NetPulse</p>
+    </footer>
+
     <script defer src="network.js"></script>
     <script type="module" src="theme.js"></script>
     <script type="module" src="gradient-sync.js"></script>

@@ -3,42 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NetPulse – Тест швидкості</title>
+    <title>NetPulse — Тест швидкості</title>
     <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   </head>
   <body class="theme-dark">
-    <div class="container">
-      <header class="header">
-        <h1 class="title">Тест швидкості</h1>
-        <p class="subtitle">Виміряй швидкість свого інтернету миттєво</p>
-      </header>
+    <header class="header">
+      <h1 class="title">Тест швидкості</h1>
+      <p class="subtitle">Виміряй швидкість свого інтернету миттєво</p>
+    </header>
 
-      <main class="main">
-        <section class="results">
-          <div class="result-block">
-            <label>⬇ Завантаження:</label>
-            <span id="downloadSpeed">0 Mbps</span>
-          </div>
-          <div class="result-block">
-            <label>⬆ Вивантаження:</label>
-            <span id="uploadSpeed">0 Mbps</span>
-          </div>
-        </section>
-
-        <div class="actions">
-          <button id="startTestBtn" class="btn primary">Запустити тест</button>
-          <a href="index.html" class="btn link">← На головну</a>
+    <main class="main speed">
+      <section class="card">
+        <div class="row">
+          <span class="label">⬇ Завантаження:</span>
+          <span id="downloadSpeed" class="value">0 Mbps</span>
         </div>
-      </main>
+        <div class="row">
+          <span class="label">⬆ Вивантаження:</span>
+          <span id="uploadSpeed" class="value">0 Mbps</span>
+        </div>
+        <div class="actions">
+          <button id="startTestBtn" class="primary">Запустити тест</button>
+          <a href="index.html" class="link">← На головну</a>
+        </div>
+      </section>
+    </main>
 
-      <footer class="footer">
-        <p>© 2025 NetPulse</p>
-      </footer>
-    </div>
+    <footer class="footer">
+      <p>© 2025 NetPulse</p>
+    </footer>
 
     <script defer src="speedtest.min.js"></script>
-    <script defer src="speed.js"></script>
+    <script defer src="speed.js?v=4"></script>
     <script type="module" src="theme.js"></script>
+    <script type="module" src="gradient-sync.js"></script>
   </body>
 </html>
