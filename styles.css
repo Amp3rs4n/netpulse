@@ -1,4 +1,4 @@
-/* Оновлений CSS для NetPulse: адаптивний горизонтальний дизайн з неоновим UI з анімацією */
+/* NetPulse UI — оновлений сучасний темний неоновий стиль з анімацією */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
@@ -11,6 +11,7 @@
   --color-text: #f0f0f0;
   --color-button: #667eea;
   --spacing: 1rem;
+  --glow: 0 0 10px rgba(107, 90, 252, 0.5);
 }
 
 * {
@@ -23,24 +24,18 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
 }
-@media (min-width: 1200px) {
-  html { font-size: 18px; }
-}
-@media (min-width: 1920px) {
-  html { font-size: 20px; }
-}
+@media (min-width: 1200px) { html { font-size: 18px; } }
+@media (min-width: 1920px) { html { font-size: 20px; } }
 
 body {
   min-height: 100vh;
   background: linear-gradient(135deg, var(--color-bg-start), var(--color-bg-end));
   color: var(--color-text);
   font-family: var(--font-main);
-  font-size: 1rem;
-  line-height: 1.5;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   padding: 2rem 1rem;
   text-align: center;
   overflow-x: hidden;
@@ -49,14 +44,8 @@ body {
 }
 
 @keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 a {
@@ -64,82 +53,64 @@ a {
   text-decoration: none;
 }
 a:hover {
-  text-decoration: none;
-}
-footer a {
   text-decoration: underline;
 }
 
+h1, h2, p {
+  animation: fadeIn 1s ease forwards;
+}
 h1 {
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--color-text);
-  text-shadow:
-    0 0 8px var(--color-primary),
-    0 0 16px var(--color-primary);
+  text-shadow: 0 0 8px var(--color-primary), 0 0 16px var(--color-primary);
   margin-bottom: 1.5rem;
-  animation: fadeIn 1s ease forwards;
 }
-
 h2 {
   font-size: 1.75rem;
   font-weight: 600;
-  color: var(--color-text);
   margin-bottom: 1rem;
-  word-break: break-word;
-  animation: fadeIn 1s ease forwards;
 }
-
 p {
   font-size: 1rem;
-  color: var(--color-text);
   margin-bottom: 1rem;
+}
+
+.section,
+.horizontal-section {
+  background-color: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 2rem 1rem;
+  text-align: center;
   animation: fadeIn 1s ease forwards;
 }
 
 .section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem;
-  text-align: center;
-  border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.02);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-  margin-bottom: 1.5rem;
-  width: 100%;
   max-width: 480px;
-  margin-left: auto;
-  margin-right: auto;
-  animation: fadeIn 1s ease forwards;
+  width: 100%;
+  margin: 1.5rem auto;
 }
 
 .horizontal-section {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem;
   justify-content: space-between;
   align-items: stretch;
-  gap: 2rem;
-  padding: 2rem 1rem;
-  border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.02);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-  text-align: center;
-  flex-wrap: wrap;
-  animation: fadeIn 1s ease forwards;
+  max-width: 1000px;
+  margin: 2rem auto;
 }
 
 .container {
-  width: 100%;
   max-width: 1000px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   padding: 0 1rem;
   align-items: center;
-  animation: fadeIn 1s ease forwards;
 }
 
 .card {
@@ -151,7 +122,11 @@ p {
   justify-content: center;
   gap: 3rem;
   flex-wrap: wrap;
-  animation: fadeIn 1s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow);
 }
 
 .card .result-row,
@@ -162,16 +137,19 @@ p {
   box-shadow: 0 0 10px rgba(107, 90, 252, 0.15);
   min-width: 200px;
   text-align: center;
-  animation: fadeIn 1s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card .result-row:hover,
+.speed-card:hover {
+  transform: scale(1.03);
+  box-shadow: var(--glow);
 }
 
 .result-row .label {
   font-size: 0.95rem;
-  display: block;
-  margin-bottom: 0.5rem;
   color: #ccc;
+  margin-bottom: 0.5rem;
 }
-
 .result-row .value,
 .speed-card span {
   font-size: 1.25rem;
@@ -190,20 +168,16 @@ button, .btn {
   text-decoration: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   box-shadow: 0 0 0.25rem var(--color-button);
-  display: inline-block;
-  margin-top: 0.75rem;
   font-weight: 600;
   font-size: 1rem;
+  margin-top: 0.75rem;
   word-break: break-word;
-  animation: fadeIn 1s ease forwards;
 }
-
 button:hover, .btn:hover {
   transform: scale(1.05);
   box-shadow: 0 0 1rem var(--color-button);
   background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
 }
-
 button:active {
   transform: scale(0.95);
 }
@@ -214,12 +188,10 @@ button:active {
   color: #666;
   animation: fadeIn 1s ease forwards;
 }
-
 .footer a {
   color: #aaa;
   text-decoration: none;
 }
-
 .footer a:hover {
   color: #fff;
   text-shadow: 0 0 4px #aaa;
@@ -230,12 +202,10 @@ button:active {
     flex-direction: column;
     align-items: center;
   }
-
   .horizontal-section {
     flex-direction: column;
     align-items: center;
   }
-
   .horizontal-section .btn {
     width: 100%;
   }
