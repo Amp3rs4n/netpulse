@@ -1,36 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <link rel="stylesheet" href="styles.css" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NetPulse - Ping Test</title>
+  <title>NetPulse - Тест пінгу</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="preload">
   <div class="container">
     <header>
-      <h1>Ping Test</h1>
+      <h1>📶 Тест пінгу</h1>
+      <p class="subheading">Вимірювання затримки та джиттера вашого з'єднання</p>
     </header>
-    <main>
-      <div class="ping-results">
-        <p>Ping: <span id="pingValue">0 ms</span></p>
-        <p>Jitter: <span id="jitterValue">0 ms</span></p>
+
+    <main class="measurement-panel">
+      <div class="measurement">
+        <p>Ping:</p>
+        <span id="pingValue">0 ms</span>
       </div>
-      <button id="startPingBtn">Start Ping Test</button>
-      <button id="backToHomeBtn" onclick="window.location.href='index.html'">Back to Home</button>
-      <button id="themeToggleBtn">🌙 Dark Mode</button>
+      <div class="measurement">
+        <p>Jitter:</p>
+        <span id="jitterValue">0 ms</span>
+      </div>
+      <button id="startPingBtn">Розпочати тест</button>
+      <button id="backToHomeBtn" onclick="window.location.href='index.html'">Повернутись на головну</button>
+      <button id="themeToggleBtn">🌗 Змінити тему</button>
     </main>
+
     <footer>
-      <p>Contact Me:</p>
+      <p>Контактна інформація:</p>
       <ul>
-        <li>Phone: <a href="tel:+380631318771">+38 (063) 131 87 71</a></li>
+        <li>Телефон: <a href="tel:+380631318771">+38 (063) 131 87 71</a></li>
         <li>Email: <a href="mailto:kisjlyk97@gmail.com">kisjlyk97@gmail.com</a></li>
         <li>Telegram: <a href="https://t.me/ampersann" target="_blank">@ampersann</a></li>
       </ul>
     </footer>
   </div>
 
-  <script defer src="speedtest.js"></script>
+  <script defer src="speedtest.min.js"></script>
   <script defer src="ping.js?v=3"></script>
   <script type="module" src="theme.js"></script>
   <script type="module" src="gradient-sync.js"></script>
