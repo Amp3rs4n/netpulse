@@ -1,43 +1,55 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NetPulse — Тест пінгу</title>
+    <title>NetPulse - Ping Test</title>
     <link rel="stylesheet" href="styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   </head>
-  <body class="theme-dark">
-    <header class="header">
-      <h1 class="title">Тест пінгу</h1>
-      <p class="subtitle">Вимірювання затримки та джиттера вашого з'єднання</p>
-    </header>
+  <body class="preload">
+    <div class="container">
+      <header class="header">
+        <h1 class="title">Ping &amp; Jitter Test</h1>
+        <p class="subtitle">Перевірте стабільність вашого інтернет-з'єднання</p>
+        <nav class="navbar">
+          <a href="index.html">Головна</a>
+          <a href="speed.html">Швидкість</a>
+          <a href="ping.html" aria-current="page">Пінг</a>
+          <a href="network.html">Мережа</a>
+        </nav>
+      </header>
 
-    <main class="main speed">
-      <section class="card">
-        <div class="row">
-          <span class="label">Ping:</span>
-          <span id="pingValue" class="value">0 ms</span>
+      <main class="card">
+        <div class="results">
+          <div class="result-row">
+            <span class="label">Ping:</span>
+            <span class="value" id="pingValue">0 ms</span>
+          </div>
+          <div class="result-row">
+            <span class="label">Jitter:</span>
+            <span class="value" id="jitterValue">0 ms</span>
+          </div>
         </div>
-        <div class="row">
-          <span class="label">Jitter:</span>
-          <span id="jitterValue" class="value">0 ms</span>
-        </div>
+
         <div class="actions">
-          <button id="startPingBtn" class="primary">Розпочати тест</button>
-          <a href="index.html" class="link">← На головну</a>
+          <button id="startPingBtn">Розпочати перевірку</button>
+          <button onclick="window.location.href='index.html'">На головну</button>
+          <button id="themeToggleBtn">🌙 Темна тема</button>
         </div>
-      </section>
-    </main>
+      </main>
 
-    <footer class="footer">
-      <p>© 2025 NetPulse</p>
-    </footer>
+      <footer class="footer">
+        <p>Звʼязатися зі мною:</p>
+        <ul>
+          <li>Телефон: <a href="tel:+380631318771">+38 (063) 131 87 71</a></li>
+          <li>Email: <a href="mailto:kisjlyk97@gmail.com">kisjlyk97@gmail.com</a></li>
+          <li>Telegram: <a href="https://t.me/ampersann" target="_blank">@ampersann</a></li>
+        </ul>
+      </footer>
+    </div>
 
     <script defer src="speedtest.min.js"></script>
-    <script defer src="ping.js?v=4"></script>
+    <script defer src="ping.js"></script>
     <script type="module" src="theme.js"></script>
     <script type="module" src="gradient-sync.js"></script>
   </body>

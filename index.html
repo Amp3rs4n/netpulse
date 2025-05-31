@@ -3,66 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NetPulse — Миттєве тестування інтернету</title>
+  <title>NetPulse — Тест Інтернету</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="main-header">
-    <div class="container">
-      <h1 class="logo" onclick="location.href='index.html'">NetPulse</h1>
-      <nav class="main-nav">
+  <header class="top-bar">
+    <div class="top-container">
+      <h1 class="brand">NetPulse</h1>
+      <nav class="nav-links">
         <a href="speed.html">Швидкість</a>
         <a href="ping.html">Пінг</a>
         <a href="network.html">Мережа</a>
-        <button id="themeToggle" aria-label="Перемикання теми">🌙</button>
+        <button id="themeToggle" class="theme-btn">🌙</button>
       </nav>
     </div>
   </header>
 
-  <main class="homepage">
-    <section class="intro">
-      <h2 class="subtitle">Миттєве тестування швидкості вашого інтернет-з'єднання</h2>
+  <main class="main-grid">
+    <section class="card feature">
+      <img src="icons/speed.svg" alt="Швидкість" class="icon" />
+      <h2>Швидкість</h2>
+      <p>Тест завантаження та вивантаження даних</p>
+      <a class="button" href="speed.html">Перевірити</a>
     </section>
 
-    <section class="features-grid">
-      <div class="feature-card" onclick="location.href='speed.html'">
-        <div class="icon">
-          <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zm7-9l5 5H7l5-5z"/></svg>
-        </div>
-        <h3>Швидкість</h3>
-        <p>Тест завантаження та вивантаження даних</p>
-      </div>
-      <div class="feature-card" onclick="location.href='ping.html'">
-        <div class="icon">
-          <svg viewBox="0 0 24 24"><path d="M4 6h2v12H4zm7-4h2v16h-2zm7 8h2v8h-2z"/></svg>
-        </div>
-        <h3>Пінг</h3>
-        <p>Вимірювання затримки та джиттера</p>
-      </div>
-      <div class="feature-card" onclick="location.href='network.html'">
-        <div class="icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
-          10-4.48 10-10S17.52 2 12 2zm0 18c-4.41
-          0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-        </div>
-        <h3>Мережа</h3>
-        <p>IP-адреса, провайдер, геолокація</p>
-      </div>
+    <section class="card feature">
+      <img src="icons/ping.svg" alt="Пінг" class="icon" />
+      <h2>Пінг</h2>
+      <p>Вимірювання затримки та джиттера</p>
+      <a class="button" href="ping.html">Перевірити</a>
+    </section>
+
+    <section class="card feature">
+      <img src="icons/network.svg" alt="Мережа" class="icon" />
+      <h2>Мережа</h2>
+      <p>IP-адреса, провайдер, геолокація</p>
+      <a class="button" href="network.html">Перевірити</a>
     </section>
   </main>
 
-  <footer class="main-footer">
-    <div class="container">
-      <p>© 2025 NetPulse</p>
-      <div class="contacts">
-        <span>Телефон: <a href="tel:+380631318771">+38 (063) 131 87 71</a></span>
-        <span>Email: <a href="mailto:kisjlyk97@gmail.com">kisjlyk97@gmail.com</a></span>
-        <span>Telegram: <a href="https://t.me/ampersann">@ampersann</a></span>
-      </div>
-    </div>
+  <footer class="footer">
+    <p>&copy; 2025 NetPulse</p>
   </footer>
 
   <script src="theme.js"></script>
