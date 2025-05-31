@@ -1,77 +1,70 @@
-/* styles.css — редизайн для NetPulse за сучасними UX/UI принципами */
+/* styles.css — оновлений повний редизайн NetPulse з урахуванням UX/UI, адаптивності та естетики */
 
 :root {
-  --color-bg: #0d0d11;
-  --color-surface: #1a1a22;
-  --color-text: #ffffff;
-  --color-subtle: #999999;
+  --color-bg-dark: #0e0e11;
+  --color-surface: #1a1a1f;
+  --color-text-light: #ffffff;
+  --color-text-muted: #aaaaaa;
   --color-accent: #6c5ce7;
   --color-accent-hover: #a29bfe;
-  --color-border: #2a2a33;
-  --color-shadow: rgba(0, 0, 0, 0.3);
-
+  --color-border: #2f2f35;
   --font-main: 'Inter', sans-serif;
-  --radius: 1rem;
-  --padding: 2rem;
-  --transition: 0.3s ease;
+  --shadow: 0 0 12px rgba(0, 0, 0, 0.3);
 }
 
 body {
   margin: 0;
+  padding: 0;
   font-family: var(--font-main);
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.6;
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-light);
   display: flex;
   flex-direction: column;
-  align-items: center;
   min-height: 100vh;
-  transition: background-color var(--transition), color var(--transition);
 }
 
 .container {
-  max-width: 960px;
-  padding: var(--padding);
   width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   align-items: center;
   text-align: center;
 }
 
 header {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  padding-top: 2rem;
+  text-align: center;
 }
 
-h1.title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin: 0;
+.title {
+  font-size: 2.75rem;
+  font-weight: 700;
 }
 
 .subtitle {
+  margin-top: 0.25rem;
   font-size: 1.1rem;
-  color: var(--color-subtle);
-  margin-top: -1rem;
+  color: var(--color-text-muted);
 }
 
 .navbar {
+  margin-top: 2rem;
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .navbar a {
+  text-decoration: none;
   color: var(--color-accent);
   font-weight: 600;
-  text-decoration: none;
-  transition: color var(--transition);
+  font-size: 1rem;
+  transition: color 0.3s;
 }
 
 .navbar a:hover {
@@ -79,52 +72,48 @@ h1.title {
 }
 
 .card {
-  background: var(--color-surface);
-  border-radius: var(--radius);
-  padding: var(--padding);
-  box-shadow: 0 0 16px var(--color-shadow);
+  margin-top: 3rem;
+  background-color: var(--color-surface);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
   border: 1px solid var(--color-border);
   width: 100%;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
 }
 
-.result-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.125rem;
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: 0.75rem;
+.card .icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--color-accent);
 }
 
-.result-row .label {
-  color: var(--color-subtle);
+.card h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
 }
 
-.result-row .value {
-  font-weight: 600;
-  color: var(--color-text);
+.card p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
 }
 
 .actions {
   display: flex;
   justify-content: center;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 button {
+  background: var(--color-accent);
+  color: white;
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 0.5rem;
-  background: var(--color-accent);
-  color: #fff;
   font-size: 1rem;
-  font-weight: 500;
   cursor: pointer;
-  transition: background var(--transition);
+  transition: background 0.3s ease;
   font-family: var(--font-main);
 }
 
@@ -132,39 +121,26 @@ button:hover {
   background: var(--color-accent-hover);
 }
 
-footer {
-  font-size: 0.875rem;
-  color: var(--color-subtle);
+.footer {
   margin-top: auto;
-  padding: 2rem 0;
+  padding: 2rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
   text-align: center;
 }
 
-/* Темна/світла тема */
-.theme-light {
-  --color-bg: #f5f5f5;
-  --color-surface: #ffffff;
-  --color-text: #1a1a1a;
-  --color-subtle: #666666;
-  --color-border: #dddddd;
-  --color-shadow: rgba(0, 0, 0, 0.1);
-}
-
-/* Адаптив */
-@media (max-width: 768px) {
-  .result-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-  }
-
+/* Респонсив */
+@media screen and (max-width: 600px) {
   .navbar {
     flex-direction: column;
-    align-items: center;
+    gap: 1rem;
   }
 
-  header {
-    flex-direction: column;
-    gap: 1rem;
+  .title {
+    font-size: 2rem;
+  }
+
+  .card {
+    padding: 1.5rem;
   }
 }
