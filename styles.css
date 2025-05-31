@@ -1,4 +1,4 @@
-/* Оновлений CSS для NetPulse: адаптивний горизонтальний дизайн з неоновим UI */
+/* Оновлений CSS для NetPulse: адаптивний горизонтальний дизайн з неоновим UI з анімацією */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
@@ -21,6 +21,7 @@
 
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 @media (min-width: 1200px) {
   html { font-size: 18px; }
@@ -43,6 +44,19 @@ body {
   padding: 2rem 1rem;
   text-align: center;
   overflow-x: hidden;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 }
 
 a {
@@ -64,6 +78,7 @@ h1 {
     0 0 8px var(--color-primary),
     0 0 16px var(--color-primary);
   margin-bottom: 1.5rem;
+  animation: fadeIn 1s ease forwards;
 }
 
 h2 {
@@ -72,12 +87,14 @@ h2 {
   color: var(--color-text);
   margin-bottom: 1rem;
   word-break: break-word;
+  animation: fadeIn 1s ease forwards;
 }
 
 p {
   font-size: 1rem;
   color: var(--color-text);
   margin-bottom: 1rem;
+  animation: fadeIn 1s ease forwards;
 }
 
 .section {
@@ -95,6 +112,7 @@ p {
   max-width: 480px;
   margin-left: auto;
   margin-right: auto;
+  animation: fadeIn 1s ease forwards;
 }
 
 .horizontal-section {
@@ -109,6 +127,7 @@ p {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
   text-align: center;
   flex-wrap: wrap;
+  animation: fadeIn 1s ease forwards;
 }
 
 .container {
@@ -120,6 +139,7 @@ p {
   gap: 1.5rem;
   padding: 0 1rem;
   align-items: center;
+  animation: fadeIn 1s ease forwards;
 }
 
 .card {
@@ -131,6 +151,7 @@ p {
   justify-content: center;
   gap: 3rem;
   flex-wrap: wrap;
+  animation: fadeIn 1s ease forwards;
 }
 
 .card .result-row,
@@ -141,6 +162,7 @@ p {
   box-shadow: 0 0 10px rgba(107, 90, 252, 0.15);
   min-width: 200px;
   text-align: center;
+  animation: fadeIn 1s ease forwards;
 }
 
 .result-row .label {
@@ -173,6 +195,7 @@ button, .btn {
   font-weight: 600;
   font-size: 1rem;
   word-break: break-word;
+  animation: fadeIn 1s ease forwards;
 }
 
 button:hover, .btn:hover {
@@ -189,6 +212,7 @@ button:active {
   margin-top: 2rem;
   font-size: 0.8rem;
   color: #666;
+  animation: fadeIn 1s ease forwards;
 }
 
 .footer a {
