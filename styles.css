@@ -40,7 +40,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 2rem;
+  padding: 3rem 1rem;
   text-align: center;
 }
 
@@ -62,7 +62,7 @@ h1 {
   text-shadow:
     0 0 8px var(--color-primary),
     0 0 16px var(--color-primary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 h2 {
   font-size: 2rem;
@@ -87,12 +87,17 @@ p {
   background-color: rgba(255, 255, 255, 0.02);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
   margin-bottom: 2rem;
+  width: 100%;
+  max-width: 600px;
 }
 
 .container {
-  width: 90%;
-  max-width: 70ch;
+  width: 100%;
+  max-width: 720px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .card {
@@ -143,4 +148,19 @@ button:active {
 .footer a:hover {
   color: #fff;
   text-shadow: 0 0 4px #aaa;
+}
+
+/* Специфікація секцій з неоновими рамками */
+.feature-box {
+  border: 1px solid rgba(107, 90, 252, 0.3);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 0 10px rgba(107, 90, 252, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+  box-shadow: 0 0 20px rgba(107, 90, 252, 0.4);
 }
