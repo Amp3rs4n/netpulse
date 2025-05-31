@@ -1,141 +1,122 @@
-/* ======== RESET & GLOBAL ======== */
+/* Global styles */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #0e0e1a, #131324);
-  color: #e6e6f0;
+body {
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(145deg, #0d0b1f, #1a1830);
+  color: #e0e0f0;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 4rem;
   font-size: 18px;
 }
 
-/* ======== TYPOGRAPHY ======== */
-h1, h2, h3 {
-  color: #ffffff;
-  text-align: center;
-  margin-bottom: 0.75rem;
-}
-
-h1 {
-  font-size: 3.2rem;
-  font-weight: 700;
-  text-shadow: 0 0 12px rgba(128, 0, 255, 0.7);
-}
-
-h2 {
-  font-size: 1.75rem;
-}
-
-p {
-  font-size: 1.1rem;
-  color: #c0c0dd;
-}
-
-a {
-  color: #8d6cff;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-a:hover {
-  color: #d2c2ff;
-  text-shadow: 0 0 8px rgba(141, 108, 255, 0.6);
-}
-
-/* ======== LAYOUT ======== */
 .container {
-  max-width: 1000px;
-  padding: 3rem;
   width: 100%;
+  max-width: 900px;
+  text-align: center;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #f1e4ff;
+  text-shadow: 0 0 15px rgba(170, 80, 255, 0.8);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  color: #b0a9cc;
 }
 
 .card {
-  background-color: rgba(30, 30, 45, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 24px;
-  box-shadow: 0 0 20px rgba(128, 0, 255, 0.2);
-  padding: 2.5rem;
-  margin: 2rem 0;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: rgba(28, 28, 40, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(128, 0, 255, 0.3);
+  padding: 2rem;
+  margin: 1.5rem 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 28px rgba(141, 108, 255, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px rgba(150, 100, 255, 0.4);
 }
 
-/* ======== BUTTONS ======== */
-button,
-.btn {
-  background-color: #8d6cff;
-  color: #fff;
-  padding: 0.8rem 1.6rem;
-  border: none;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  margin: 0.5rem;
+.card h3 {
+  font-size: 1.4rem;
+  color: #cdbfff;
+  margin-bottom: 0.8rem;
 }
 
-button:hover,
-.btn:hover {
-  background-color: #a68dff;
-  box-shadow: 0 0 12px rgba(173, 138, 255, 0.5);
-}
-
-/* ======== FOOTER ======== */
-.footer {
-  margin-top: 3rem;
+.card p {
   font-size: 1rem;
+  color: #c0c0d0;
+  margin-bottom: 1.2rem;
+}
+
+.card a {
+  background: #6c3eff;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 0 8px rgba(108, 62, 255, 0.4);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+}
+
+.card a:hover {
+  background: #a179ff;
+  box-shadow: 0 0 12px rgba(141, 108, 255, 0.6);
+}
+
+.footer {
+  margin-top: 4rem;
+  font-size: 0.9rem;
   color: #777;
-  text-align: center;
 }
 
 .footer a {
   color: #aaa;
+  text-decoration: none;
 }
 
 .footer a:hover {
   color: #fff;
-  text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+  text-shadow: 0 0 4px #aaa;
 }
 
-/* ======== DARK MODE TOGGLE (optional) ======== */
-.toggle-theme {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-/* ======== RESPONSIVE ======== */
-@media (max-width: 768px) {
-  html, body {
+@media screen and (max-width: 768px) {
+  body {
     font-size: 16px;
-  }
-
-  .container {
-    padding: 1.5rem;
-  }
-
-  .card {
     padding: 2rem;
   }
 
-  button,
-  .btn {
-    font-size: 1rem;
-    padding: 0.6rem 1.2rem;
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .card h3 {
+    font-size: 1.2rem;
+  }
+
+  .card p, .card a {
+    font-size: 0.95rem;
   }
 }
