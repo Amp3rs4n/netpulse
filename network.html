@@ -1,26 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NetPulse - Network Info</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body class="preload">
-    <div class="container">
-      <header class="header">
-        <h1 class="title">Інформація про мережу</h1>
-        <p class="subtitle">Деталі вашого підключення до інтернету</p>
-        <nav class="navbar">
-          <a href="index.html">Головна</a>
-          <a href="speed.html">Швидкість</a>
-          <a href="ping.html">Пінг</a>
-          <a href="network.html" aria-current="page">Мережа</a>
-        </nav>
-      </header>
+<html lang="uk">
 
-      <main class="card">
-        <div class="results">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NetPulse — Мережа</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>NetPulse</h1>
+      <p>Детальна інформація про ваше мережеве підключення</p>
+    </header>
+
+    <main>
+      <section class="section">
+        <h2>Мережа</h2>
+        <p>Дізнайтесь IP-адресу, провайдера, геолокацію та інше</p>
+
+        <div class="card">
           <div class="result-row">
             <span class="label">IP-адреса:</span>
             <span class="value" id="ipValue">Завантаження...</span>
@@ -40,23 +43,19 @@
         </div>
 
         <div class="actions">
-          <button onclick="window.location.href='index.html'">На головну</button>
-          <button id="themeToggleBtn">🌙 Темна тема</button>
+          <a href="index.html" class="btn">← На головну</a>
         </div>
-      </main>
+      </section>
+    </main>
 
-      <footer class="footer">
-        <p>Звʼязатися зі мною:</p>
-        <ul>
-          <li>Телефон: <a href="tel:+380631318771">+38 (063) 131 87 71</a></li>
-          <li>Email: <a href="mailto:kisjlyk97@gmail.com">kisjlyk97@gmail.com</a></li>
-          <li>Telegram: <a href="https://t.me/ampersann" target="_blank">@ampersann</a></li>
-        </ul>
-      </footer>
-    </div>
+    <footer class="footer">
+      &copy; 2025 NetPulse
+    </footer>
+  </div>
 
-    <script defer src="network.js"></script>
-    <script type="module" src="theme.js"></script>
-    <script type="module" src="gradient-sync.js"></script>
-  </body>
+  <script defer src="network.js"></script>
+  <script type="module" src="theme.js"></script>
+  <script type="module" src="gradient-sync.js"></script>
+</body>
+
 </html>

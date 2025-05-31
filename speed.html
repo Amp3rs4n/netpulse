@@ -8,48 +8,43 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <header class="page-header">
-    <div class="header-content">
-      <a href="index.html" class="logo">NetPulse</a>
-      <nav class="nav-links">
-        <a href="speed.html" class="active">Швидкість</a>
-        <a href="ping.html">Пінг</a>
-        <a href="network.html">Мережа</a>
-      </nav>
-      <button id="themeToggle" class="theme-toggle">🌙</button>
-    </div>
-  </header>
+  <div class="container">
+    <header>
+      <h1>NetPulse</h1>
+      <p>Вимірювання швидкості вашого інтернет-з'єднання в реальному часі</p>
+    </header>
 
-  <main class="container">
-    <h1 class="page-title">Тест швидкості</h1>
-    <p class="page-subtitle">Виміряй швидкість свого інтернету миттєво</p>
+    <main>
+      <section class="section">
+        <h2>Тест швидкості</h2>
+        <p>Виміряй швидкість свого інтернету миттєво</p>
 
-    <section class="card">
-      <div class="results">
-        <div class="result-row">
-          <span class="label">⬇ Завантаження:</span>
-          <span id="downloadSpeed" class="value">0 Mbps</span>
+        <div class="card">
+          <div class="result-row">
+            <span class="label">⬇ Завантаження:</span>
+            <span id="downloadSpeed" class="value">0 Mbps</span>
+          </div>
+          <div class="result-row">
+            <span class="label">⬆ Вивантаження:</span>
+            <span id="uploadSpeed" class="value">0 Mbps</span>
+          </div>
         </div>
-        <div class="result-row">
-          <span class="label">⬆ Вивантаження:</span>
-          <span id="uploadSpeed" class="value">0 Mbps</span>
+
+        <div class="actions">
+          <button id="startSpeedBtn" class="btn">Запустити тест</button>
+          <a href="index.html" class="btn">← На головну</a>
         </div>
-      </div>
+      </section>
+    </main>
 
-      <div class="actions">
-        <button id="startSpeedBtn">Запустити тест</button>
-        <a href="index.html" class="link-button">← На головну</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    &copy; 2025 NetPulse
-  </footer>
+    <footer class="footer">
+      &copy; 2025 NetPulse
+    </footer>
+  </div>
 
   <script src="speed.js"></script>
   <script src="theme.js"></script>
