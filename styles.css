@@ -63,7 +63,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 footer a {
   text-decoration: underline;
@@ -108,6 +108,21 @@ p {
   max-width: 480px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.feature-card {
+  padding: 2rem 1rem;
+  margin: 1.5rem auto;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(107, 90, 252, 0.15);
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .horizontal-section {
