@@ -1,143 +1,158 @@
-/* styles.css — оновлений для нового дизайну NetPulse */
+/* styles.css — повністю оновлений редизайн для NetPulse */
 
 :root {
-  --color-bg-dark: #0e0e11;
-  --color-bg-light: #ffffff;
-  --color-text-dark: #ffffff;
-  --color-text-light: #1e1e1e;
-  --color-accent: #6c5ce7;
-  --color-accent-soft: #a29bfe;
-  --color-border: #2d2d2d;
+  --bg-dark: #0e0e11;
+  --bg-light: #ffffff;
+  --text-dark: #ffffff;
+  --text-light: #1e1e1e;
+  --accent: #6c5ce7;
+  --accent-hover: #a29bfe;
+  --surface: #1c1c1f;
+  --border: #2e2e32;
+  --shadow: rgba(0, 0, 0, 0.3);
   --font-main: 'Inter', sans-serif;
 }
 
 body {
-  font-family: var(--font-main);
   margin: 0;
-  padding: 0;
-  background: var(--color-bg-dark);
-  color: var(--color-text-dark);
-  transition: background 0.3s, color 0.3s;
+  font-family: var(--font-main);
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .theme-light {
-  background: var(--color-bg-light);
-  color: var(--color-text-light);
+  background-color: var(--bg-light);
+  color: var(--text-light);
 }
 
 .container {
-  max-width: 960px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2rem;
+  text-align: center;
 }
 
 .header {
-  text-align: center;
-  padding: 2rem 1rem 1rem;
+  margin-top: 2rem;
 }
 
 .title {
-  font-size: 2.25rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin: 0;
+  margin-bottom: 0.25rem;
 }
 
 .subtitle {
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--color-accent-soft);
-  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  color: var(--accent-hover);
 }
 
-.main {
-  padding: 1rem;
+.navbar {
   display: flex;
   justify-content: center;
-  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
 }
 
-.card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--color-border);
-  border-radius: 1rem;
-  padding: 2rem;
-  width: 100%;
-  max-width: 600px;
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
-  transition: background 0.3s;
-}
-
-.network-info {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 2rem;
-}
-
-.network-info li {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--color-border);
-  font-size: 1.1rem;
-}
-
-.label {
-  font-weight: 600;
-  color: var(--color-accent-soft);
-}
-
-.actions {
-  text-align: center;
-}
-
-.link {
-  color: var(--color-accent);
-  font-weight: 600;
+.navbar a {
   text-decoration: none;
+  font-weight: 600;
   font-size: 1rem;
+  color: var(--accent);
   transition: color 0.2s;
 }
 
-.link:hover {
-  color: var(--color-accent-soft);
+.navbar a:hover {
+  color: var(--accent-hover);
 }
 
-.footer {
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: #888;
+.card {
+  background: var(--surface);
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 0 20px var(--shadow);
+  width: 100%;
+  max-width: 600px;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 0;
+}
+
+.label {
+  color: var(--accent-hover);
+  font-weight: 500;
+}
+
+.value {
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 button {
   font-family: var(--font-main);
-  background: var(--color-accent);
+  background: var(--accent);
   color: white;
   border: none;
   border-radius: 0.5rem;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-  background: var(--color-accent-soft);
+  background: var(--accent-hover);
 }
 
+.footer {
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: #888;
+  text-align: center;
+}
+
+/* Responsive layout */
 @media (max-width: 600px) {
-  .card {
-    padding: 1.5rem;
+  .container {
+    padding: 1.5rem 1rem;
   }
 
   .title {
-    font-size: 1.75rem;
+    font-size: 2rem;
   }
 
-  .network-info li {
-    font-size: 1rem;
+  .result-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
