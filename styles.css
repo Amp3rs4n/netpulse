@@ -42,6 +42,7 @@ body {
   flex-direction: column;
   padding: 2rem 1rem;
   text-align: center;
+  overflow-x: hidden;
 }
 
 a {
@@ -70,6 +71,7 @@ h2 {
   font-weight: 600;
   color: var(--color-text);
   margin-bottom: 1rem;
+  word-break: break-word;
 }
 
 p {
@@ -102,6 +104,7 @@ p {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  padding: 0 1rem;
 }
 
 .card {
@@ -126,6 +129,7 @@ button, .btn {
   margin-top: 0.75rem;
   font-weight: 600;
   font-size: 1rem;
+  word-break: break-word;
 }
 
 button:hover, .btn:hover {
@@ -174,21 +178,27 @@ button:active {
 }
 
 @media (max-width: 480px) {
+  html {
+    font-size: 15px;
+  }
   h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
   .btn {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.8rem;
   }
   .section, .feature-box {
-    padding: 1.5rem 1rem;
+    padding: 1.25rem 0.75rem;
   }
   .container {
     padding: 0;
     gap: 1rem;
+  }
+  body {
+    padding: 1.5rem 0.5rem;
   }
 }
