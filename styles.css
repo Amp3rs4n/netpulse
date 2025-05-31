@@ -1,4 +1,4 @@
-/* Оновлений CSS для NetPulse: адаптивний дизайн з неоновим UI */
+/* Оновлений CSS для NetPulse: адаптивний горизонтальний дизайн з неоновим UI */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
@@ -99,12 +99,13 @@ p {
 
 .container {
   width: 100%;
-  max-width: 720px;
+  max-width: 1000px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   padding: 0 1rem;
+  align-items: center;
 }
 
 .card {
@@ -112,6 +113,32 @@ p {
   padding: 2rem;
   border-radius: 0.75rem;
   margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.card .result-row {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(107, 90, 252, 0.15);
+  min-width: 200px;
+  text-align: center;
+}
+
+.result-row .label {
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ccc;
+}
+
+.result-row .value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
 }
 
 button, .btn {
@@ -136,7 +163,6 @@ button:hover, .btn:hover {
   transform: scale(1.05);
   box-shadow: 0 0 1rem var(--color-button);
   background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
-  text-decoration: none;
 }
 
 button:active {
@@ -159,47 +185,9 @@ button:active {
   text-shadow: 0 0 4px #aaa;
 }
 
-/* Специфікація секцій з неоновими рамками */
-.feature-box {
-  border: 1px solid rgba(107, 90, 252, 0.3);
-  border-radius: 1rem;
-  padding: 1.25rem 1rem;
-  margin: 1.5rem 0;
-  background: rgba(255, 255, 255, 0.02);
-  box-shadow: 0 0 10px rgba(107, 90, 252, 0.2);
-  transition: box-shadow 0.3s ease;
-  width: 100%;
-  max-width: 480px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.feature-box:hover {
-  box-shadow: 0 0 20px rgba(107, 90, 252, 0.4);
-}
-
-@media (max-width: 480px) {
-  html {
-    font-size: 15px;
-  }
-  h1 {
-    font-size: 1.75rem;
-  }
-  h2 {
-    font-size: 1.3rem;
-  }
-  .btn {
-    font-size: 0.875rem;
-    padding: 0.5rem 0.8rem;
-  }
-  .section, .feature-box {
-    padding: 1.25rem 0.75rem;
-  }
-  .container {
-    padding: 0;
-    gap: 1rem;
-  }
-  body {
-    padding: 1.5rem 0.5rem;
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    align-items: center;
   }
 }
