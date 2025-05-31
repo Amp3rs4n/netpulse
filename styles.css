@@ -36,6 +36,12 @@ body {
   font-family: var(--font-main);
   font-size: 1rem;
   line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  text-align: center;
 }
 
 a {
@@ -79,11 +85,13 @@ p {
   min-height: 100vh;
   text-align: center;
 }
+
 .container {
   width: 90%;
   max-width: 70ch;
   margin: 0 auto;
 }
+
 .card {
   background-color: rgba(255, 255, 255, 0.05);
   padding: 2rem;
@@ -100,13 +108,34 @@ button, .btn {
   border-radius: 0.5rem;
   cursor: pointer;
   text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   box-shadow: 0 0 0.25rem var(--color-button);
+  display: inline-block;
+  margin-top: 0.5rem;
 }
+
 button:hover, .btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 0.5rem var(--color-button);
+  box-shadow: 0 0 1rem var(--color-button);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
 }
+
 button:active {
   transform: scale(0.95);
+}
+
+.footer {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.footer a {
+  color: #aaa;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #fff;
+  text-shadow: 0 0 4px #aaa;
 }
