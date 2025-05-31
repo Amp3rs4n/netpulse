@@ -5,12 +5,12 @@
 :root {
   --font-main: 'Poppins', sans-serif;
   --color-bg-start: #0f0f1b;
-  --color-bg-end:   #1b1b2f;
-  --color-primary:  #6b5afc;
-  --color-accent:   #5f3bb7;
-  --color-text:     #f0f0f0;
-  --color-button:   #667eea;
-  --spacing:        1rem;
+  --color-bg-end: #1b1b2f;
+  --color-primary: #6b5afc;
+  --color-accent: #5f3bb7;
+  --color-text: #f0f0f0;
+  --color-button: #667eea;
+  --spacing: 1rem;
 }
 
 * {
@@ -49,20 +49,20 @@ a {
   text-decoration: none;
 }
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 footer a {
   text-decoration: underline;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 700;
   color: var(--color-text);
-  text-shadow: 
+  text-shadow:
     0 0 8px var(--color-primary),
     0 0 16px var(--color-primary);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 h2 {
   font-size: 2rem;
@@ -81,9 +81,12 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 4rem 2rem;
-  min-height: 100vh;
+  padding: 3rem 2rem;
   text-align: center;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  margin-bottom: 2rem;
 }
 
 .container {
@@ -111,7 +114,9 @@ button, .btn {
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   box-shadow: 0 0 0.25rem var(--color-button);
   display: inline-block;
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 button:hover, .btn:hover {
