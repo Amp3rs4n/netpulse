@@ -1,41 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <link rel="stylesheet" href="styles.css" />
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NetPulse - Speed Test</title>
-</head>
-<body class="preload">
-  <div class="container">
-    <header>
-      <h1>Internet Speed Test</h1>
-    </header>
-    <main>
-      <div class="speedometer">
-        <div class="progress-bar"></div>
-        <div class="speed-results">
-          <p>Download Speed: <span id="downloadSpeed">0 Mbps</span></p>
-          <p>Upload Speed: <span id="uploadSpeed">0 Mbps</span></p>
-        </div>
-      </div>
-      <button id="startTestBtn">Start Test</button>
-      <button id="backToHomeBtn" onclick="window.location.href='index.html'">Back to Home</button>
-      <button id="themeToggleBtn">🌙 Dark Mode</button>
-    </main>
-    <footer>
-      <p>Contact Me:</p>
-      <ul>
-        <li>Phone: <a href="tel:+380631318771">+38 (063) 131 87 71</a></li>
-        <li>Email: <a href="mailto:kisjlyk97@gmail.com">kisjlyk97@gmail.com</a></li>
-        <li>Telegram: <a href="https://t.me/ampersann" target="_blank">@ampersann</a></li>
-      </ul>
-    </footer>
-  </div>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NetPulse – Тест швидкості</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+  <body class="theme-dark">
+    <div class="container">
+      <header class="header">
+        <h1 class="title">Тест швидкості</h1>
+        <p class="subtitle">Виміряй швидкість свого інтернету миттєво</p>
+      </header>
 
-  <script defer src="speedtest.js"></script>
-  <script defer src="speed.js?v=3"></script>
-  <script type="module" src="theme.js"></script>
-  <script type="module" src="gradient-sync.js"></script>
-</body>
+      <main class="main">
+        <section class="results">
+          <div class="result-block">
+            <label>⬇ Завантаження:</label>
+            <span id="downloadSpeed">0 Mbps</span>
+          </div>
+          <div class="result-block">
+            <label>⬆ Вивантаження:</label>
+            <span id="uploadSpeed">0 Mbps</span>
+          </div>
+        </section>
+
+        <div class="actions">
+          <button id="startTestBtn" class="btn primary">Запустити тест</button>
+          <a href="index.html" class="btn link">← На головну</a>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <p>© 2025 NetPulse</p>
+      </footer>
+    </div>
+
+    <script defer src="speedtest.min.js"></script>
+    <script defer src="speed.js"></script>
+    <script type="module" src="theme.js"></script>
+  </body>
 </html>
