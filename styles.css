@@ -164,3 +164,32 @@ button:active {
 .feature-box:hover {
   box-shadow: 0 0 20px rgba(107, 90, 252, 0.4);
 }
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .feature-box {
+    padding: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .container {
+    gap: 1.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+}
