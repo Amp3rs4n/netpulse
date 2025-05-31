@@ -1,33 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NetPulse - Home</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NetPulse — Головна</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="preload">
-  <div class="container">
+  <div class="container home">
     <header>
-      <h1>NetPulse</h1>
-      <p>Measure your internet speed and latency in seconds.</p>
+      <h1 class="site-title">NetPulse</h1>
+      <p class="subtitle">Миттєве тестування швидкості вашого інтернет-з'єднання</p>
     </header>
     <main>
-      <button id="speedTestBtn" onclick="window.location.href='speed.html'">Speed Measurement</button>
-      <button id="pingTestBtn" onclick="window.location.href='ping.html'">Latency Measurement</button>
-      <button id="networkInfoBtn" onclick="window.location.href='network.html'">Network Info</button>
-      <button id="themeToggleBtn">🌙 Dark Mode</button>
+      <nav class="main-navigation">
+        <a href="speed.html" class="nav-card">
+          <h2>🔽 Швидкість</h2>
+          <p>Тест завантаження та вивантаження</p>
+        </a>
+        <a href="ping.html" class="nav-card">
+          <h2>📶 Пінг</h2>
+          <p>Вимірювання затримки та джиттера</p>
+        </a>
+        <a href="network.html" class="nav-card">
+          <h2>🌐 Мережа</h2>
+          <p>IP-адреса, провайдер, геолокація</p>
+        </a>
+      </nav>
     </main>
     <footer>
-      <p>Contact Me:</p>
-      <ul>
-        <li>Phone: <a href="tel:+380631318771">+38 (063) 131 87 71</a></li>
-        <li>Email: <a href="mailto:kisjlyk97@gmail.com">kisjlyk97@gmail.com</a></li>
-        <li>Telegram: <a href="https://t.me/ampersann" target="_blank">@ampersann</a></li>
-      </ul>
+      <p>© 2025 NetPulse</p>
     </footer>
   </div>
-  <script src="theme.js"></script>
-  <script src="gradient-sync.js"></script>
+
+  <script src="theme.js" type="module"></script>
+  <script src="gradient-sync.js" type="module"></script>
 </body>
 </html>
