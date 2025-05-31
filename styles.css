@@ -1,96 +1,102 @@
-/* Global styles */
+/* Reset */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-html {
-  font-size: 18px;
-  scroll-behavior: smooth;
-}
-
+/* Base */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #0b0b15, #14142a);
-  color: #e0e0f0;
+  font-family: 'Segoe UI', 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0b0c1a, #0e0f2c);
+  color: #f2f2f2;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  padding: 3rem 1rem;
+  padding: 4vh 2vw;
+  text-align: center;
+  font-size: 1.2rem;
 }
 
 .container {
-  width: 100%;
   max-width: 900px;
-  text-align: center;
+  width: 100%;
 }
 
 .title {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
   color: #ffffff;
-  text-shadow: 0 0 12px rgba(176, 92, 255, 0.6);
+  text-shadow: 0 0 15px rgba(153, 102, 255, 0.8);
 }
 
 .subtitle {
-  font-size: 1.1rem;
-  margin-bottom: 2.5rem;
+  font-size: 1.25rem;
   color: #ccccdd;
+  margin-bottom: 2.5rem;
 }
 
 .section {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
-.section h3 {
-  font-size: 1.5rem;
+.section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
   color: #ffffff;
-  margin-bottom: 0.25rem;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
 }
 
 .section p {
-  font-size: 1rem;
-  color: #b0b0c0;
-  margin-bottom: 0.75rem;
+  color: #bbbbcc;
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
 }
 
-.button-link {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  background-color: #4c00ff;
+.btn {
+  background-color: #4f24ff;
   color: #fff;
-  border-radius: 10px;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
+  padding: 0.6rem 1.6rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
   text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 0 10px rgba(76, 0, 255, 0.4);
-  margin-top: 0.5rem;
+  display: inline-block;
+  box-shadow: 0 0 12px rgba(128, 0, 255, 0.6);
 }
 
-.button-link:hover {
-  background-color: #693dff;
+.btn:hover {
+  background-color: #6e3fff;
   transform: scale(1.05);
-  box-shadow: 0 0 14px rgba(141, 108, 255, 0.7);
+  box-shadow: 0 0 20px rgba(153, 102, 255, 0.8);
 }
 
 .footer {
-  margin-top: 3rem;
-  font-size: 0.85rem;
-  color: #666;
-  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 4rem;
 }
 
-.footer a {
-  color: #aaa;
-  text-decoration: none;
-}
-
-.footer a:hover {
-  color: #fff;
-  text-shadow: 0 0 4px #aaa;
+@media (max-width: 768px) {
+  body {
+    font-size: 1rem;
+  }
+  .title {
+    font-size: 2.5rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+  .section h2 {
+    font-size: 1.4rem;
+  }
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1.4rem;
+  }
 }
