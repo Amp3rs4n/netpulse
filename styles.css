@@ -44,6 +44,7 @@ body {
   min-height: 100vh;
   background: linear-gradient(135deg, var(--color-bg-start), var(--color-bg-end));
   color: var(--color-text);
+  padding-bottom: env(safe-area-inset-bottom);
   font-family: var(--font-main);
   font-size: 1rem;
   line-height: 1.5;
