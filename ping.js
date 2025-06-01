@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("startPingBtn");
 
   startBtn.addEventListener("click", async () => {
-    pingEl.textContent = "N/A";
-    jitterEl.textContent = "N/A";
+    pingEl.textContent = "Очікування...";
+    jitterEl.textContent = "Очікування...";
     startBtn.disabled = true;
     startBtn.textContent = "Тестування...";
 
@@ -16,11 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let i = 0; i < attempts; i++) {
       const ping = await measureWebRTCPing();
       results.push(ping);
-      await delay(250);
+      if (isMobile) console.log(`📱 Ping #${i + 1}: ${ping} ms`);
+      await delay(300);
     }
 
-    const avgPing = average(results);
-    const jitter = standardDeviation(results);
+    const valid = results.filter(r => r !== 999);
+    const avgPing = valid.length ? average(valid) : NaN;
+    const jitter = valid.length ? standardDeviation(valid) : NaN;
 
     pingEl.textContent = isNaN(avgPing) ? "N/A" : avgPing.toFixed(2) + " ms";
     jitterEl.textContent = isNaN(jitter) ? "N/A" : jitter.toFixed(2) + " ms";
@@ -34,40 +36,39 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function average(arr) {
-    const valid = arr.filter(n => n !== 999);
-    return valid.length ? valid.reduce((a, b) => a + b, 0) / valid.length : NaN;
+    return arr.reduce((a, b) => a + b, 0) / arr.length;
   }
 
   function standardDeviation(values) {
-    const valid = values.filter(n => n !== 999);
-    const avg = average(valid);
-    const squareDiffs = valid.map(value => Math.pow(value - avg, 2));
-    return valid.length ? Math.sqrt(average(squareDiffs)) : NaN;
+    const avg = average(values);
+    const squareDiffs = values.map(value => Math.pow(value - avg, 2));
+    return Math.sqrt(average(squareDiffs));
   }
 
   function measureWebRTCPing() {
     return new Promise(resolve => {
       const start = performance.now();
       const pc = new RTCPeerConnection({
-        iceServers: [{ urls: "stun:stun.l.google.com:19302" }]
+        iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
+        iceCandidatePoolSize: 1
       });
 
       let resolved = false;
-
-      function finalize(success) {
+      const finalize = (success) => {
         if (!resolved) {
           resolved = true;
           pc.close();
           const end = performance.now();
           resolve(success ? end - start : 999);
         }
-      }
+      };
 
       try {
+        // ✅ обов’язково до offer
         pc.createDataChannel("ping");
 
-        pc.onicegatheringstatechange = () => {
-          if (pc.iceGatheringState === "complete") finalize(true);
+        pc.onicecandidate = (e) => {
+          if (!e.candidate) finalize(true);
         };
 
         pc.oniceconnectionstatechange = () => {
@@ -76,17 +77,17 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         };
 
-        pc.onicecandidate = event => {
-          if (!event.candidate) finalize(true);
+        pc.onicegatheringstatechange = () => {
+          if (pc.iceGatheringState === "complete") finalize(true);
         };
 
         pc.createOffer()
           .then(offer => pc.setLocalDescription(offer))
           .catch(() => finalize(false));
 
-        setTimeout(() => finalize(false), 2500); // мобільний таймаут
+        setTimeout(() => finalize(false), 3000); // мобільний fallback
       } catch (err) {
-        finalize(false);
+        resolve(999);
       }
     });
   }
