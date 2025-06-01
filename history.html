@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Історія вимірювань — NetPulse</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .history-table {
+      width: 100%;
+      max-width: 900px;
+      margin: 2rem auto;
+      border-collapse: collapse;
+      background-color: rgba(255, 255, 255, 0.03);
+      box-shadow: 0 0 10px rgba(107, 90, 252, 0.15);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .history-table th,
+    .history-table td {
+      padding: 0.75rem 1rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .history-table th {
+      background-color: rgba(107, 90, 252, 0.1);
+    }
+    .history-table tr:last-child td {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Історія результатів</h1>
+      <p>Останні вимірювання швидкості та пінгу</p>
+      <a href="index.html" class="btn">← На головну</a>
+    </header>
+
+    <main>
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Дата</th>
+            <th>Пінг (ms)</th>
+            <th>Jitter (ms)</th>
+            <th>Завантаження (Mbps)</th>
+            <th>Вивантаження (Mbps)</th>
+          </tr>
+        </thead>
+        <tbody id="historyBody">
+          <tr><td colspan="5">Завантаження даних...</td></tr>
+        </tbody>
+      </table>
+    </main>
+
+    <footer class="footer">
+      &copy; 2025 NetPulse
+      <button id="themeToggleBtn">🌙</button>
+    </footer>
+  </div>
+
+  <script defer src="theme.js"></script>
+  <script>
+    async function fetchHistory() {
+      try {
+        const res = await fetch("https://netpulse-backend.onrender.com/api/results");
+        const data = await res.json();
+
+        const tbody = document.getElementById("historyBody");
+        tbody.innerHTML = "";
+
+        if (!data.length) {
+          tbody.innerHTML = "<tr><td colspan='5'>Історія порожня</td></tr>";
+          return;
+        }
+
+        for (const row of data) {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${new Date(row.timestamp).toLocaleString()}</td>
+            <td>${row.ping.toFixed(2)}</td>
+            <td>${row.jitter.toFixed(2)}</td>
+            <td>${row.download.toFixed(2)}</td>
+            <td>${row.upload.toFixed(2)}</td>
+          `;
+          tbody.appendChild(tr);
+        }
+      } catch (err) {
+        document.getElementById("historyBody").innerHTML =
+          "<tr><td colspan='5'>Помилка завантаження історії</td></tr>";
+      }
+    }
+
+    fetchHistory();
+  </script>
+</body>
+</html>
