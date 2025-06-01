@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     pingEl.textContent = "Очікування...";
     jitterEl.textContent = "Очікування...";
     startBtn.disabled = true;
-    startBtn.textContent = "Тестування...";
+    startBtn.innerHTML = `Тестування<span class="spinner"></span>`;
 
     // очистка графіка
     pingData.length = 0;
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     jitterEl.textContent = isNaN(jitter) ? "N/A" : jitter.toFixed(2) + " ms";
 
     startBtn.disabled = false;
-    startBtn.textContent = "Розпочати перевірку";
+    startBtn.innerHTML = "Розпочати перевірку";
   });
 
   function delay(ms) {

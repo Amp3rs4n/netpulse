@@ -106,12 +106,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   s.onend = () => {
     startBtn.disabled = false;
-    startBtn.textContent = "Запустити тест";
+    startBtn.innerHTML = "Запустити тест";
   };
 
   startBtn.addEventListener("click", () => {
     startBtn.disabled = true;
-    startBtn.textContent = "Тестування...";
+    startBtn.innerHTML = `Тестування<span class="spinner"></span>`;
 
     // очищення
     downloadData.length = 0;
