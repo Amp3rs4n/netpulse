@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     jitterEl.textContent = isNaN(jitter) ? "N/A" : jitter.toFixed(2) + " ms";
 
     // Збереження на бекенд
-    fetch("https://netpulse-backend.onrender.com/api/save-ping-result", {
+    fetch("https://netpulse-backend.onrender.com/api/results", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

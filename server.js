@@ -9,7 +9,9 @@ const port = process.env.PORT || 3000;
 
 // 🔒 Middleware
 app.use(cors({
-  origin: "https://amp3rs4n.github.io"
+  origin: "https://amp3rs4n.github.io",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"]
 }));
 app.use(express.json());
 
@@ -55,6 +57,7 @@ app.get("/api/results", (req, res) => {
         console.error("❌ Fetch error:", err.message);
         return res.status(500).json({ error: err.message });
       }
+      res.setHeader("Access-Control-Allow-Origin", "https://amp3rs4n.github.io");
       res.json(rows);
     }
   );
