@@ -1,4 +1,4 @@
-/* Оновлений CSS для NetPulse: адаптивний горизонтальний дизайн з неоновим UI */
+/* Оновлений CSS для NetPulse: адаптивний горизонтальний дизайн з неоновим UI + темна/світла тема */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
@@ -11,6 +11,15 @@
   --color-text: #f0f0f0;
   --color-button: #667eea;
   --spacing: 1rem;
+}
+
+.light-mode {
+  --color-bg-start: #f4f4f8;
+  --color-bg-end: #ffffff;
+  --color-text: #1b1b2f;
+  --color-primary: #4e3dd1;
+  --color-accent: #3b2b90;
+  --color-button: #4e5ed1;
 }
 
 * {
@@ -221,6 +230,10 @@ button:active {
   margin-top: 1.5rem;
   font-size: 0.8rem;
   color: #666;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .footer a {
@@ -231,6 +244,22 @@ button:active {
 .footer a:hover {
   color: #fff;
   text-shadow: 0 0 4px #aaa;
+}
+
+#themeToggleBtn {
+  font-size: 0.9rem;
+  background: none;
+  border: 1px solid var(--color-button);
+  color: var(--color-text);
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 0.25rem;
+}
+
+#themeToggleBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 768px) {
