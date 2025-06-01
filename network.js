@@ -1,21 +1,13 @@
 // network.js
 
-// Function to fetch IP address
-async function fetchIPAddress() {
-  try {
-    const response = await fetch('https://api.ipify.org?format=json');
-    const data = await response.json();
-    return data.ip;
-  } catch (error) {
-    console.error('Error fetching IP address:', error);
-    return 'Unknown';
-  }
-}
+// Function to fetch network details from IPinfo
+async function fetchNetworkDetails() {
+  const token = '8e1b9b121035fb';
+  const url = `https://ipinfo.io/json?token=${token}`;
 
-// Function to fetch network details using IP address
-async function fetchNetworkDetails(ip) {
   try {
-    const response = await fetch(`http://ip-api.com/json/${ip}`);
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Failed to fetch IP info');
     const data = await response.json();
     return data;
   } catch (error) {
@@ -28,33 +20,30 @@ async function fetchNetworkDetails(ip) {
 function detectNetworkType() {
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   if (connection) {
-    return connection.effectiveType || 'Unknown';
+    return connection.effectiveType || 'Невідомо';
   }
-  return 'Unknown';
+  return 'Невідомо';
 }
 
 // Function to display network info
 async function displayNetworkInfo() {
-  const ipAddressElement = document.getElementById('ipAddress');
-  const ispElement = document.getElementById('isp');
-  const locationElement = document.getElementById('location');
-  const networkTypeElement = document.getElementById('networkType');
+  const ipAddressElement = document.getElementById('ipValue');
+  const ispElement = document.getElementById('ispValue');
+  const locationElement = document.getElementById('locationValue');
+  const orgElement = document.getElementById('orgValue');
 
-  // Fetch and display IP address
-  const ip = await fetchIPAddress();
-  ipAddressElement.textContent = ip;
-
-  // Fetch and display ISP and location
-  const networkDetails = await fetchNetworkDetails(ip);
-  if (networkDetails) {
-    ispElement.textContent = networkDetails.isp || 'Unknown';
-    locationElement.textContent = `${networkDetails.city}, ${networkDetails.country}` || 'Unknown';
+  const data = await fetchNetworkDetails();
+  if (data) {
+    ipAddressElement.textContent = data.ip || 'Невідомо';
+    ispElement.textContent = data.org || 'Невідомо';
+    locationElement.textContent = data.city && data.country
+      ? `${data.city}, ${data.country}`
+      : data.loc || 'Невідомо';
+    orgElement.textContent = data.hostname || 'Невідомо';
+  } else {
+    ipAddressElement.textContent = ispElement.textContent = locationElement.textContent = orgElement.textContent = 'Помилка';
   }
-
-  // Detect and display network type
-  const networkType = detectNetworkType();
-  networkTypeElement.textContent = networkType;
 }
 
-// Initialize the network info display
+// Initialize
 displayNetworkInfo();
