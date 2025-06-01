@@ -77,7 +77,7 @@
   <script>
     async function fetchHistory() {
       try {
-        const res = await fetch("https://netpulse-backend.onrender.com/api/results");
+        const res = await fetch("https://netpulse-server.onrender.com/api/results");
         const data = await res.json();
         const tbody = document.getElementById("historyBody");
         tbody.innerHTML = "";

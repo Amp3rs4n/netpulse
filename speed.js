@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startBtn.innerHTML = "Запустити тест";
 
     // Збереження на бекенд
-    fetch("https://netpulse-backend.onrender.com/api/results", {
+    fetch("https://netpulse-server.onrender.com/api/results", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
