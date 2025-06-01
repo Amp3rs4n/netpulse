@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("startPingBtn");
 
   startBtn.addEventListener("click", async () => {
+    pingEl.textContent = "N/A";
+    jitterEl.textContent = "N/A";
     startBtn.disabled = true;
     startBtn.textContent = "Тестування...";
 
@@ -50,24 +52,42 @@ document.addEventListener("DOMContentLoaded", () => {
         iceServers: [{ urls: "stun:stun.l.google.com:19302" }]
       });
 
-      pc.createDataChannel("ping");
+      let resolved = false;
 
-      pc.createOffer()
-        .then(offer => pc.setLocalDescription(offer))
-        .catch(() => resolve(999)); // error fallback
-
-      pc.onicecandidate = event => {
-        if (!event.candidate) {
-          const end = performance.now();
+      function finalize(success) {
+        if (!resolved) {
+          resolved = true;
           pc.close();
-          resolve(end - start);
+          const end = performance.now();
+          resolve(success ? end - start : 999);
         }
-      };
+      }
 
-      setTimeout(() => {
-        pc.close();
-        resolve(999); // timeout fallback
-      }, 2000);
+      try {
+        pc.createDataChannel("ping");
+
+        pc.onicegatheringstatechange = () => {
+          if (pc.iceGatheringState === "complete") finalize(true);
+        };
+
+        pc.oniceconnectionstatechange = () => {
+          if (["failed", "disconnected", "closed"].includes(pc.iceConnectionState)) {
+            finalize(false);
+          }
+        };
+
+        pc.onicecandidate = event => {
+          if (!event.candidate) finalize(true);
+        };
+
+        pc.createOffer()
+          .then(offer => pc.setLocalDescription(offer))
+          .catch(() => finalize(false));
+
+        setTimeout(() => finalize(false), 2500); // мобільний таймаут
+      } catch (err) {
+        finalize(false);
+      }
     });
   }
 });
