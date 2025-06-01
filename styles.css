@@ -274,3 +274,51 @@ button:active {
     width: 100%;
   }
 }
+
+/* 🌞 Light mode */
+body.light-mode {
+  background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
+  color: #222;
+}
+
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode p,
+body.light-mode .value,
+body.light-mode .label {
+  color: #222;
+}
+
+body.light-mode .card,
+body.light-mode .section,
+body.light-mode .feature-card,
+body.light-mode .horizontal-section,
+body.light-mode .speed-card,
+body.light-mode .result-row {
+  background-color: rgba(0, 0, 0, 0.03);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .btn {
+  background: linear-gradient(135deg, #6b5afc, #5f3bb7);
+  color: #fff;
+  box-shadow: 0 0 0.25rem #6b5afc;
+}
+
+body.light-mode .btn:hover {
+  background: linear-gradient(135deg, #5f3bb7, #6b5afc);
+  box-shadow: 0 0 1rem #6b5afc;
+}
+
+body.light-mode .footer {
+  color: #555;
+}
+
+body.light-mode .footer a {
+  color: #777;
+}
+
+body.light-mode .footer a:hover {
+  color: #000;
+  text-shadow: 0 0 4px #999;
+}
