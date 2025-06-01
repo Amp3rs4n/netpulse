@@ -328,12 +328,18 @@ canvas {
   background-color: rgba(255, 255, 255, 0.02);
   border-radius: 12px;
   margin-top: 1rem;
+  width: 100%;
   max-width: 100%;
+  max-height: 100px; /* 👈 додано обмеження висоти */
   box-shadow: 0 0 10px rgba(107, 90, 252, 0.15);
 }
+
 .chart-container {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  padding: 1rem 0;
+  padding: 0.5rem 0; /* 👈 зменшено відступи */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* 👈 менший відступ між графіками */
 }
