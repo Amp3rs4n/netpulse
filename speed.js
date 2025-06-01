@@ -12,12 +12,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const downloadData = [];
   const uploadData = [];
-  const labels = [];
+  const downloadLabels = [];
+  const uploadLabels = [];
+
+  let indexDL = 0;
+  let indexUL = 0;
 
   const downloadChart = new Chart(downloadChartCtx, {
     type: "line",
     data: {
-      labels,
+      labels: downloadLabels,
       datasets: [{
         label: "Завантаження (Mbps)",
         data: downloadData,
@@ -38,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const uploadChart = new Chart(uploadChartCtx, {
     type: "line",
     data: {
-      labels,
+      labels: uploadLabels,
       datasets: [{
         label: "Вивантаження (Mbps)",
         data: uploadData,
@@ -62,20 +66,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  let index = 0;
-
   s.onupdate = data => {
-    if (data.dlStatus) {
+    if (data.testState === 1 && data.dlStatus) {
       const dl = parseFloat(data.dlStatus);
       downloadEl.textContent = `${dl.toFixed(2)} Mbps`;
       downloadData.push(dl);
-      labels.push(`T${index++}`);
+      downloadLabels.push(`T${indexDL++}`);
       downloadChart.update();
     }
-    if (data.ulStatus) {
+    if (data.testState === 3 && data.ulStatus) {
       const ul = parseFloat(data.ulStatus);
       uploadEl.textContent = `${ul.toFixed(2)} Mbps`;
       uploadData.push(ul);
+      uploadLabels.push(`T${indexUL++}`);
       uploadChart.update();
     }
   };
@@ -88,12 +91,17 @@ document.addEventListener("DOMContentLoaded", () => {
   startBtn.addEventListener("click", () => {
     startBtn.disabled = true;
     startBtn.textContent = "Тестування...";
+
     downloadData.length = 0;
     uploadData.length = 0;
-    labels.length = 0;
+    downloadLabels.length = 0;
+    uploadLabels.length = 0;
+    indexDL = 0;
+    indexUL = 0;
+
     downloadChart.update();
     uploadChart.update();
-    index = 0;
+
     s.start("dlul");
   });
 });
