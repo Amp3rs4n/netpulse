@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         label: "Завантаження (Mbps)",
         data: downloadData,
         borderColor: "rgba(75, 192, 192, 1)",
-        tension: 0.2,
+        tension: 0.3,
         fill: false
       }]
     },
@@ -34,7 +34,17 @@ document.addEventListener("DOMContentLoaded", () => {
       responsive: true,
       animation: false,
       scales: {
-        y: { beginAtZero: true }
+        y: {
+          beginAtZero: true,
+          suggestedMax: 1000
+        }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: getComputedStyle(document.documentElement).getPropertyValue('--color-text') || '#fff'
+          }
+        }
       }
     }
   });
@@ -47,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
         label: "Вивантаження (Mbps)",
         data: uploadData,
         borderColor: "rgba(153, 102, 255, 1)",
-        tension: 0.2,
+        tension: 0.3,
         fill: false
       }]
     },
@@ -55,7 +65,17 @@ document.addEventListener("DOMContentLoaded", () => {
       responsive: true,
       animation: false,
       scales: {
-        y: { beginAtZero: true }
+        y: {
+          beginAtZero: true,
+          suggestedMax: 1000
+        }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: getComputedStyle(document.documentElement).getPropertyValue('--color-text') || '#fff'
+          }
+        }
       }
     }
   });
@@ -74,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
       downloadLabels.push(`T${indexDL++}`);
       downloadChart.update();
     }
+
     if (data.testState === 3 && data.ulStatus) {
       const ul = parseFloat(data.ulStatus);
       uploadEl.textContent = `${ul.toFixed(2)} Mbps`;
@@ -92,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startBtn.disabled = true;
     startBtn.textContent = "Тестування...";
 
+    // очищення
     downloadData.length = 0;
     uploadData.length = 0;
     downloadLabels.length = 0;

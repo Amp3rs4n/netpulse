@@ -4,16 +4,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("startPingBtn");
   const pingChartCtx = document.getElementById("pingChart")?.getContext("2d");
 
+  const pingData = [];
+  const pingLabels = [];
+  let pingIndex = 0;
+
   let pingChart;
   if (pingChartCtx) {
     pingChart = new Chart(pingChartCtx, {
       type: "line",
       data: {
-        labels: [],
+        labels: pingLabels,
         datasets: [{
-          label: "Ping (ms)",
-          data: [],
-          borderColor: "#6b5afc",
+          label: "Пінг (ms)",
+          data: pingData,
+          borderColor: "rgba(107, 90, 252, 1)",
           backgroundColor: "rgba(107, 90, 252, 0.2)",
           borderWidth: 2,
           tension: 0.2,
@@ -27,9 +31,17 @@ document.addEventListener("DOMContentLoaded", () => {
         scales: {
           y: {
             beginAtZero: true,
+            suggestedMax: 200,
             title: {
               display: true,
               text: "ms"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: getComputedStyle(document.documentElement).getPropertyValue('--color-text') || '#fff'
             }
           }
         }
@@ -43,23 +55,24 @@ document.addEventListener("DOMContentLoaded", () => {
     startBtn.disabled = true;
     startBtn.textContent = "Тестування...";
 
+    // очистка графіка
+    pingData.length = 0;
+    pingLabels.length = 0;
+    pingIndex = 0;
+    if (pingChart) pingChart.update();
+
     const results = [];
     const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
     const attempts = isMobile ? 4 : 10;
-
-    if (pingChart) {
-      pingChart.data.labels = [];
-      pingChart.data.datasets[0].data = [];
-      pingChart.update();
-    }
 
     for (let i = 0; i < attempts; i++) {
       const ping = await measureWebRTCPing();
       results.push(ping);
 
+      // оновлення графіка
       if (pingChart) {
-        pingChart.data.labels.push(`#${i + 1}`);
-        pingChart.data.datasets[0].data.push(ping);
+        pingData.push(ping);
+        pingLabels.push(`T${pingIndex++}`);
         pingChart.update();
       }
 
