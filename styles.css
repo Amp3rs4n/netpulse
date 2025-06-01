@@ -368,3 +368,20 @@ canvas {
     transform: rotate(360deg);
   }
 }
+
+.btn-small {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  box-shadow: 0 0 0.2rem var(--color-button);
+}
+
+.btn-small:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0.75rem var(--color-button);
+}
