@@ -2,6 +2,40 @@ document.addEventListener("DOMContentLoaded", () => {
   const pingEl = document.getElementById("pingValue");
   const jitterEl = document.getElementById("jitterValue");
   const startBtn = document.getElementById("startPingBtn");
+  const pingChartCtx = document.getElementById("pingChart")?.getContext("2d");
+
+  let pingChart;
+  if (pingChartCtx) {
+    pingChart = new Chart(pingChartCtx, {
+      type: "line",
+      data: {
+        labels: [],
+        datasets: [{
+          label: "Ping (ms)",
+          data: [],
+          borderColor: "#6b5afc",
+          backgroundColor: "rgba(107, 90, 252, 0.2)",
+          borderWidth: 2,
+          tension: 0.2,
+          pointRadius: 3,
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        animation: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: "ms"
+            }
+          }
+        }
+      }
+    });
+  }
 
   startBtn.addEventListener("click", async () => {
     pingEl.textContent = "Очікування...";
@@ -13,9 +47,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
     const attempts = isMobile ? 4 : 10;
 
+    if (pingChart) {
+      pingChart.data.labels = [];
+      pingChart.data.datasets[0].data = [];
+      pingChart.update();
+    }
+
     for (let i = 0; i < attempts; i++) {
       const ping = await measureWebRTCPing();
       results.push(ping);
+
+      if (pingChart) {
+        pingChart.data.labels.push(`#${i + 1}`);
+        pingChart.data.datasets[0].data.push(ping);
+        pingChart.update();
+      }
+
       if (isMobile) console.log(`📱 Ping #${i + 1}: ${ping} ms`);
       await delay(300);
     }
@@ -64,7 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       try {
-        // ✅ обов’язково до offer
         pc.createDataChannel("ping");
 
         pc.onicecandidate = (e) => {
@@ -85,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
           .then(offer => pc.setLocalDescription(offer))
           .catch(() => finalize(false));
 
-        setTimeout(() => finalize(false), 3000); // мобільний fallback
+        setTimeout(() => finalize(false), 3000);
       } catch (err) {
         resolve(999);
       }
