@@ -85,6 +85,19 @@ document.addEventListener("DOMContentLoaded", () => {
     pingEl.textContent = isNaN(avgPing) ? "N/A" : avgPing.toFixed(2) + " ms";
     jitterEl.textContent = isNaN(jitter) ? "N/A" : jitter.toFixed(2) + " ms";
 
+    // Збереження на бекенд
+    fetch("https://netpulse-backend.onrender.com/api/save-ping-result", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        ping: avgPing,
+        jitter: jitter,
+        timestamp: new Date().toISOString()
+      })
+    }).catch(err => console.error("❌ Помилка збереження пінгу:", err));
+
     startBtn.disabled = false;
     startBtn.innerHTML = "Розпочати перевірку";
   });

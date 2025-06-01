@@ -8,7 +8,7 @@
   <style>
     .history-table {
       width: 100%;
-      max-width: 900px;
+      max-width: 1000px;
       margin: 2rem auto;
       border-collapse: collapse;
       background-color: rgba(255, 255, 255, 0.03);
@@ -27,6 +27,17 @@
     }
     .history-table tr:last-child td {
       border-bottom: none;
+    }
+
+    .history-table td {
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .history-table th, .history-table td {
+        font-size: 0.8rem;
+        padding: 0.5rem;
+      }
     }
   </style>
 </head>
@@ -58,6 +69,7 @@
     <footer class="footer">
       &copy; 2025 NetPulse
       <button id="themeToggleBtn">🌙</button>
+      <a href="history.html" id="historyLink" title="Історія вимірювань">📜</a>
     </footer>
   </div>
 
@@ -67,7 +79,6 @@
       try {
         const res = await fetch("https://netpulse-backend.onrender.com/api/results");
         const data = await res.json();
-
         const tbody = document.getElementById("historyBody");
         tbody.innerHTML = "";
 
@@ -76,20 +87,23 @@
           return;
         }
 
+        data.reverse(); // найновіші зверху
+
         for (const row of data) {
+          const date = new Date(row.timestamp).toLocaleString("uk-UA");
+          const ping = row.ping != null ? row.ping.toFixed(2) : "—";
+          const jitter = row.jitter != null ? row.jitter.toFixed(2) : "—";
+          const dl = row.download != null ? row.download.toFixed(2) : "—";
+          const ul = row.upload != null ? row.upload.toFixed(2) : "—";
+
           const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td>${new Date(row.timestamp).toLocaleString()}</td>
-            <td>${row.ping.toFixed(2)}</td>
-            <td>${row.jitter.toFixed(2)}</td>
-            <td>${row.download.toFixed(2)}</td>
-            <td>${row.upload.toFixed(2)}</td>
-          `;
+          tr.innerHTML = `<td>${date}</td><td>${ping}</td><td>${jitter}</td><td>${dl}</td><td>${ul}</td>`;
           tbody.appendChild(tr);
         }
       } catch (err) {
         document.getElementById("historyBody").innerHTML =
-          "<tr><td colspan='5'>Помилка завантаження історії</td></tr>";
+          "<tr><td colspan='5'>⚠ Помилка завантаження історії</td></tr>";
+        console.error("Fetch error:", err);
       }
     }
 

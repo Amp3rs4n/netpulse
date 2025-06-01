@@ -88,9 +88,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  let latestDownload = 0;
+  let latestUpload = 0;
+
   s.onupdate = data => {
     if (data.testState === 1 && data.dlStatus) {
       const dl = parseFloat(data.dlStatus);
+      latestDownload = dl;
       downloadEl.textContent = `${dl.toFixed(2)} Mbps`;
       downloadData.push(dl);
       downloadLabels.push(`T${indexDL++}`);
@@ -99,6 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (data.testState === 3 && data.ulStatus) {
       const ul = parseFloat(data.ulStatus);
+      latestUpload = ul;
       uploadEl.textContent = `${ul.toFixed(2)} Mbps`;
       uploadData.push(ul);
       uploadLabels.push(`T${indexUL++}`);
@@ -109,6 +114,19 @@ document.addEventListener("DOMContentLoaded", () => {
   s.onend = () => {
     startBtn.disabled = false;
     startBtn.innerHTML = "Запустити тест";
+
+    // Збереження на бекенд
+    fetch("https://netpulse-backend.onrender.com/api/save-speed-result", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        download: latestDownload,
+        upload: latestUpload,
+        timestamp: new Date().toISOString()
+      })
+    }).catch(err => console.error("❌ Помилка збереження результату:", err));
   };
 
   startBtn.addEventListener("click", () => {
