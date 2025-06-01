@@ -30,7 +30,6 @@ async function displayNetworkInfo() {
   const ipAddressElement = document.getElementById('ipValue');
   const ispElement = document.getElementById('ispValue');
   const locationElement = document.getElementById('locationValue');
-  const orgElement = document.getElementById('orgValue');
 
   const data = await fetchNetworkDetails();
   if (data) {
