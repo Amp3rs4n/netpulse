@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
     startBtn.disabled = true;
     startBtn.innerHTML = `Тестування<span class="spinner"></span>`;
 
-    // очистка графіка
     pingData.length = 0;
     pingLabels.length = 0;
     pingIndex = 0;
@@ -69,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const ping = await measureWebRTCPing();
       results.push(ping);
 
-      // оновлення графіка
       if (pingChart) {
         pingData.push(ping);
         pingLabels.push(`T${pingIndex++}`);

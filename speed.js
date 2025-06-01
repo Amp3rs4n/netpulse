@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let indexDL = 0;
   let indexUL = 0;
 
+  const textColor = getComputedStyle(document.documentElement).getPropertyValue('--color-text') || '#ffffff';
+
   const downloadChart = new Chart(downloadChartCtx, {
     type: "line",
     data: {
@@ -42,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       plugins: {
         legend: {
           labels: {
-            color: getComputedStyle(document.documentElement).getPropertyValue('--color-text') || '#fff'
+            color: textColor
           }
         }
       }
@@ -73,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
       plugins: {
         legend: {
           labels: {
-            color: getComputedStyle(document.documentElement).getPropertyValue('--color-text') || '#fff'
+            color: textColor
           }
         }
       }
@@ -113,7 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
     startBtn.disabled = true;
     startBtn.innerHTML = `Тестування<span class="spinner"></span>`;
 
-    // очищення
     downloadData.length = 0;
     uploadData.length = 0;
     downloadLabels.length = 0;
