@@ -115,12 +115,18 @@ document.addEventListener("DOMContentLoaded", () => {
     startBtn.disabled = false;
     startBtn.innerHTML = "Запустити тест";
 
-    // Збереження на бекенд
+    const email = localStorage.getItem("np_user_email");
+    if (!email) {
+      console.warn("Користувач не авторизований — результат не буде збережено.");
+      return;
+    }
+
     fetch("https://netpulse-server.onrender.com/api/results", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
+      credentials: "include",
       body: JSON.stringify({
         download: latestDownload,
         upload: latestUpload,
