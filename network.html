@@ -53,6 +53,10 @@
       📄 Історія
       </a>
       <button id="themeToggleBtn">🌙</button>
+      <button id="loginBtn" class="btn google-login">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" style="width: 1rem; vertical-align: middle; margin-right: 0.5rem;">
+        Увійти через Google
+      </button>
       </div>
     </footer>
   </div>
@@ -60,5 +64,29 @@
   <script defer src="network.js"></script>
   <script type="module" src="theme.js"></script>
   <script type="module" src="gradient-sync.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const loginBtn = document.getElementById("loginBtn");
+
+      try {
+        const res = await fetch("https://netpulse-server.onrender.com/auth/user", {
+          credentials: "include"
+        });
+        const data = await res.json();
+
+        if (data.user) {
+          loginBtn.textContent = `👤 ${data.user.displayName}`;
+          loginBtn.disabled = true;
+          loginBtn.style.opacity = 0.7;
+        } else {
+          loginBtn.addEventListener("click", () => {
+            window.location.href = "https://netpulse-server.onrender.com/auth/google";
+          });
+        }
+      } catch (err) {
+        console.error("Помилка авторизації:", err);
+      }
+    });
+  </script>
 </body>
 </html>
