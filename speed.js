@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("np_user_email", emailFromURL);
   }
 
-  const storedEmail = localStorage.getItem("np_user_email");
+  const storedEmail = localStorage.getItem("netpulse_user_email");
 
   const downloadData = [];
   const uploadData = [];
