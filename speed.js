@@ -10,11 +10,19 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  // 🧠 Отримання email з URL та збереження
+  const params = new URLSearchParams(window.location.search);
+  const emailFromURL = params.get("email");
+  if (emailFromURL) {
+    localStorage.setItem("np_user_email", emailFromURL);
+  }
+
+  const storedEmail = localStorage.getItem("np_user_email");
+
   const downloadData = [];
   const uploadData = [];
   const downloadLabels = [];
   const uploadLabels = [];
-
   let indexDL = 0;
   let indexUL = 0;
 
@@ -115,8 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startBtn.disabled = false;
     startBtn.innerHTML = "Запустити тест";
 
-    const email = localStorage.getItem("np_user_email");
-    if (!email) {
+    if (!storedEmail) {
       console.warn("Користувач не авторизований — результат не буде збережено.");
       return;
     }
@@ -130,7 +137,11 @@ document.addEventListener("DOMContentLoaded", () => {
       body: JSON.stringify({
         download: latestDownload,
         upload: latestUpload,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        ip: null,
+        ping: null,
+        jitter: null,
+        email: storedEmail
       })
     }).catch(err => console.error("❌ Помилка збереження результату:", err));
   };
