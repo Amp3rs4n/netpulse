@@ -39,14 +39,14 @@
     <footer class="footer">
       &copy; 2025 NetPulse
       <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
-      <a href="history.html" class="btn btn-small" title="Історія результатів">
-      📄 Історія
-      </a>
-      <button id="themeToggleBtn">🌙</button>
-      <button id="loginBtn" class="btn google-login">
-        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" style="width: 1rem; vertical-align: middle; margin-right: 0.5rem;">
-        Увійти через Google
-      </button>
+        <a href="history.html" class="btn btn-small" title="Історія результатів">
+          📄 Історія
+        </a>
+        <button id="themeToggleBtn">🌙</button>
+        <button id="loginBtn" class="btn btn-small google-login">
+          <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" style="width: 1rem; vertical-align: middle; margin-right: 0.5rem;">
+          Увійти через Google
+        </button>
       </div>
     </footer>
   </div>
@@ -61,19 +61,20 @@
         const res = await fetch("https://netpulse-server.onrender.com/auth/user", {
           credentials: "include"
         });
-        const data = await res.json();
 
-        if (data.user) {
-          loginBtn.textContent = `👤 ${data.user.displayName}`;
-          loginBtn.disabled = true;
-          loginBtn.style.opacity = 0.7;
-        } else {
-          loginBtn.addEventListener("click", () => {
-            window.location.href = "https://netpulse-server.onrender.com/auth/google";
-          });
-        }
+        if (!res.ok) throw new Error("Неавторизований");
+
+        const user = await res.json();
+
+        loginBtn.innerHTML = `👤 ${user.name.split(" ")[0]}`;
+        loginBtn.classList.add("logged-in");
+        loginBtn.disabled = true;
+        loginBtn.style.opacity = 0.7;
       } catch (err) {
-        console.error("Помилка авторизації:", err);
+        // Не авторизований — показуємо кнопку входу
+        loginBtn.addEventListener("click", () => {
+          window.location.href = "https://netpulse-server.onrender.com/auth/google";
+        });
       }
     });
   </script>
