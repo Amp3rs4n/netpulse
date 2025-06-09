@@ -11,13 +11,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const storedEmail = localStorage.getItem("netpulse_user_email");
+  if (!storedEmail) {
+    startBtn.disabled = true;
+    downloadEl.textContent = "—";
+    uploadEl.textContent = "—";
+    alert("Щоб пройти тест — авторизуйтесь через Google");
+    return;
+  }
 
-  const downloadData = [];
-  const uploadData = [];
-  const downloadLabels = [];
-  const uploadLabels = [];
-  let indexDL = 0;
-  let indexUL = 0;
+  const downloadData = [], uploadData = [];
+  const downloadLabels = [], uploadLabels = [];
+  let indexDL = 0, indexUL = 0;
 
   const textColor = getComputedStyle(document.documentElement).getPropertyValue('--color-text') || '#ffffff';
 
@@ -116,11 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
     startBtn.disabled = false;
     startBtn.innerHTML = "Запустити тест";
 
-    if (!storedEmail) {
-      console.warn("Користувач не авторизований — результат не буде збережено.");
-      return;
-    }
-
     fetch("https://netpulse-server.onrender.com/api/results", {
       method: "POST",
       headers: {
@@ -136,13 +135,16 @@ document.addEventListener("DOMContentLoaded", () => {
         jitter: null,
         email: storedEmail
       })
-    }).catch(err => console.error("❌ Помилка збереження результату:", err));
+    }).then(res => {
+      if (!res.ok) throw new Error("Неможливо зберегти результат");
+    }).catch(err => console.error("❌ Помилка збереження:", err));
   };
 
   startBtn.addEventListener("click", () => {
     startBtn.disabled = true;
     startBtn.innerHTML = `Тестування<span class="spinner"></span>`;
 
+    // Очистка графіків
     downloadData.length = 0;
     uploadData.length = 0;
     downloadLabels.length = 0;

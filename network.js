@@ -1,48 +1,52 @@
 // network.js
 
-// Function to fetch network details from IPinfo
+// Отримуємо дані про IP, ISP та геолокацію
 async function fetchNetworkDetails() {
   const token = '8e1b9b121035fb';
   const url = `https://ipinfo.io/json?token=${token}`;
 
   try {
     const response = await fetch(url);
-    if (!response.ok) throw new Error('Failed to fetch IP info');
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching network details:', error);
+    if (!response.ok) throw new Error('⛔ Не вдалося отримати дані про мережу');
+    return await response.json();
+  } catch (err) {
+    console.error('❌ Помилка під час отримання IP-інформації:', err);
     return null;
   }
 }
 
-// Function to detect network type (WiFi, Cellular, etc.)
+// Визначення типу з’єднання (WiFi, 4G тощо)
 function detectNetworkType() {
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  if (connection) {
-    return connection.effectiveType || 'Невідомо';
-  }
-  return 'Невідомо';
+  return connection?.effectiveType || 'Невідомо';
 }
 
-// Function to display network info
+// Відображення всіх мережевих даних на сторінці
 async function displayNetworkInfo() {
-  const ipAddressElement = document.getElementById('ipValue');
-  const ispElement = document.getElementById('ispValue');
-  const locationElement = document.getElementById('locationValue');
+  const ipEl = document.getElementById('ipValue');
+  const ispEl = document.getElementById('ispValue');
+  const locationEl = document.getElementById('locationValue');
 
   const data = await fetchNetworkDetails();
+
   if (data) {
-    ipAddressElement.textContent = data.ip || 'Невідомо';
-    ispElement.textContent = data.org || 'Невідомо';
-    locationElement.textContent = data.city && data.country
-      ? `${data.city}, ${data.country}`
-      : data.loc || 'Невідомо';
-    orgElement.textContent = data.hostname || 'Невідомо';
+    ipEl.textContent = data.ip || 'Невідомо';
+    ispEl.textContent = data.org || 'Невідомо';
+
+    if (data.city && data.country) {
+      locationEl.textContent = `${data.city}, ${data.country}`;
+    } else if (data.loc) {
+      locationEl.textContent = data.loc;
+    } else {
+      locationEl.textContent = 'Невідомо';
+    }
+
+    // 💡 Якщо потрібно — виводимо тип з'єднання в консоль або в окреме місце
+    console.log('Тип з’єднання:', detectNetworkType());
   } else {
-    ipAddressElement.textContent = ispElement.textContent = locationElement.textContent = orgElement.textContent = 'Помилка';
+    ipEl.textContent = ispEl.textContent = locationEl.textContent = 'Помилка';
   }
 }
 
-// Initialize
+// Старт після завантаження сторінки
 displayNetworkInfo();

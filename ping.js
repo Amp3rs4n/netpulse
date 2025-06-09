@@ -4,52 +4,67 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("startPingBtn");
   const pingChartCtx = document.getElementById("pingChart")?.getContext("2d");
 
-  const pingData = [];
-  const pingLabels = [];
+  const pingData = [], pingLabels = [];
   let pingIndex = 0;
 
   const userEmail = localStorage.getItem("netpulse_user_email");
 
-  let pingChart;
-  if (pingChartCtx) {
-    pingChart = new Chart(pingChartCtx, {
-      type: "line",
-      data: {
-        labels: pingLabels,
-        datasets: [{
-          label: "Пінг (ms)",
-          data: pingData,
-          borderColor: "rgba(107, 90, 252, 1)",
-          backgroundColor: "rgba(107, 90, 252, 0.2)",
-          borderWidth: 2,
-          tension: 0.2,
-          pointRadius: 3,
-          fill: true
-        }]
-      },
-      options: {
-        responsive: true,
-        animation: false,
-        scales: {
-          y: {
-            beginAtZero: true,
-            suggestedMax: 200,
-            title: {
-              display: true,
-              text: "ms"
-            }
-          }
+  if (!userEmail) {
+    startBtn.disabled = true;
+    pingEl.textContent = "—";
+    jitterEl.textContent = "—";
+    alert("Щоб пройти перевірку — авторизуйтесь через Google");
+    return;
+  }
+
+  const textColor = getComputedStyle(document.documentElement).getPropertyValue('--color-text') || '#fff';
+
+  const pingChart = pingChartCtx
+    ? new Chart(pingChartCtx, {
+        type: "line",
+        data: {
+          labels: pingLabels,
+          datasets: [{
+            label: "Пінг (ms)",
+            data: pingData,
+            borderColor: "rgba(107, 90, 252, 1)",
+            backgroundColor: "rgba(107, 90, 252, 0.2)",
+            borderWidth: 2,
+            tension: 0.25,
+            pointRadius: 2,
+            fill: true
+          }]
         },
-        plugins: {
-          legend: {
-            labels: {
-              color: getComputedStyle(document.documentElement).getPropertyValue('--color-text') || '#fff'
+        options: {
+          responsive: true,
+          animation: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              suggestedMax: 200,
+              title: {
+                display: true,
+                text: "ms",
+                color: textColor
+              },
+              ticks: {
+                color: textColor
+              }
+            },
+            x: {
+              ticks: {
+                color: textColor
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              labels: { color: textColor }
             }
           }
         }
-      }
-    });
-  }
+      })
+    : null;
 
   startBtn.addEventListener("click", async () => {
     pingEl.textContent = "Очікування...";
@@ -60,11 +75,10 @@ document.addEventListener("DOMContentLoaded", () => {
     pingData.length = 0;
     pingLabels.length = 0;
     pingIndex = 0;
-    if (pingChart) pingChart.update();
+    pingChart?.update();
 
     const results = [];
-    const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-    const attempts = isMobile ? 4 : 10;
+    const attempts = /Android|iPhone|iPad/i.test(navigator.userAgent) ? 4 : 10;
 
     for (let i = 0; i < attempts; i++) {
       const ping = await measureWebRTCPing();
@@ -76,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
         pingChart.update();
       }
 
-      await delay(300);
+      await delay(250);
     }
 
     const valid = results.filter(r => r !== 999);
@@ -86,16 +100,14 @@ document.addEventListener("DOMContentLoaded", () => {
     pingEl.textContent = isNaN(avgPing) ? "N/A" : avgPing.toFixed(2) + " ms";
     jitterEl.textContent = isNaN(jitter) ? "N/A" : jitter.toFixed(2) + " ms";
 
-    if (!userEmail) {
-      console.warn("Користувач не авторизований — пінг не буде збережено.");
-    } else {
+    if (userEmail) {
       fetch("https://netpulse-server.onrender.com/api/results", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({
           ping: avgPing,
-          jitter: jitter,
+          jitter,
           timestamp: new Date().toISOString(),
           ip: null,
           download: null,
@@ -147,9 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!e.candidate) finalize(true);
         };
         pc.oniceconnectionstatechange = () => {
-          if (["failed", "disconnected", "closed"].includes(pc.iceConnectionState)) {
-            finalize(false);
-          }
+          if (["failed", "disconnected", "closed"].includes(pc.iceConnectionState)) finalize(false);
         };
         pc.onicegatheringstatechange = () => {
           if (pc.iceGatheringState === "complete") finalize(true);

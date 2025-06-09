@@ -77,28 +77,11 @@
     </footer>
   </div>
 
-  <script defer src="theme.js"></script>
-  <script>
-    function getParamsFromURL() {
-      const url = new URL(window.location.href);
-      const name = url.searchParams.get("name");
-      const email = url.searchParams.get("email");
-      const photo = url.searchParams.get("photo");
+  <!-- 🔗 Модулі -->
+  <script type="module">
+    import { getNetpulseUser, setupLoginButton } from './auth.js';
 
-      if (email && name) {
-        localStorage.setItem("netpulse_user_email", email);
-        localStorage.setItem("netpulse_user_name", name);
-        if (photo) localStorage.setItem("netpulse_user_photo", photo);
-        window.history.replaceState({}, document.title, location.pathname);
-        return { name, email, photo };
-      }
-
-      return {
-        name: localStorage.getItem("netpulse_user_name"),
-        email: localStorage.getItem("netpulse_user_email"),
-        photo: localStorage.getItem("netpulse_user_photo")
-      };
-    }
+    const user = setupLoginButton();
 
     async function fetchHistory(email) {
       try {
@@ -119,7 +102,7 @@
           return;
         }
 
-        data.reverse(); // найновіші зверху
+        data.reverse();
 
         for (const row of data) {
           const date = new Date(row.timestamp).toLocaleString("uk-UA");
@@ -140,22 +123,17 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      const loginBtn = document.getElementById("loginBtn");
-      const user = getParamsFromURL();
+      const user = getNetpulseUser();
 
       if (user?.email) {
-        loginBtn.textContent = `👤 ${user.name?.split(" ")[0] || "Користувач"}`;
-        loginBtn.disabled = true;
-        loginBtn.style.opacity = 0.7;
         fetchHistory(user.email);
       } else {
-        loginBtn.addEventListener("click", () => {
-          window.location.href = "https://netpulse-server.onrender.com/auth/google";
-        });
         document.getElementById("historyBody").innerHTML =
           "<tr><td colspan='5'>Авторизуйтесь, щоб переглянути історію</td></tr>";
       }
     });
   </script>
+
+  <script defer src="theme.js"></script>
 </body>
 </html>
