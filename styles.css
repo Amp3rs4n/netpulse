@@ -288,8 +288,8 @@ button:active {
 
 /* 🌞 Light mode */
 body.light-mode {
-  background: linear-gradient(135deg, #f4f4f8, #e0e0e0)!important;
-  color: #222;
+  background: linear-gradient(135deg, #e9e6ff, #f0efff);
+  color: #2a214c;
 }
 
 body.light-mode h1 {
@@ -301,7 +301,7 @@ body.light-mode h2,
 body.light-mode p,
 body.light-mode .value,
 body.light-mode .label {
-  color: #222;
+  color: #2a214c;
 }
 
 body.light-mode .card,
@@ -310,10 +310,10 @@ body.light-mode .feature-card,
 body.light-mode .horizontal-section,
 body.light-mode .speed-card,
 body.light-mode .result-row {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  background-color: rgba(160, 140, 255, 0.07); /* легкий фіолетовий */
+  box-shadow: 0 0 10px rgba(160, 140, 255, 0.2);
 }
+
 
 body.light-mode canvas {
   background-color: #f5f5f5;
