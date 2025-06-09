@@ -10,13 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // 🧠 Отримання email з URL та збереження
-  const params = new URLSearchParams(window.location.search);
-  const emailFromURL = params.get("email");
-  if (emailFromURL) {
-    localStorage.setItem("np_user_email", emailFromURL);
-  }
-
   const storedEmail = localStorage.getItem("netpulse_user_email");
 
   const downloadData = [];
