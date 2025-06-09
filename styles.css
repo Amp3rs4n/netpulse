@@ -285,7 +285,7 @@ button:active {
 
 /* 🌞 Light mode */
 body.light-mode {
-  background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
+  background: linear-gradient(135deg, #f4f4f8, #e0e0e0);
   color: #222;
 }
 
@@ -302,7 +302,6 @@ body.light-mode .section,
 body.light-mode .feature-card,
 body.light-mode .horizontal-section,
 body.light-mode .speed-card,
-body.light-mode .speed-actions,
 body.light-mode .result-row {
   background-color: rgba(0, 0, 0, 0.03);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
@@ -402,13 +401,4 @@ canvas {
 .google-login:hover {
   background-color: #f5f5f5;
   box-shadow: 0 0 0.5rem rgba(66, 133, 244, 0.3);
-}
-
-.speed-actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 1.5rem;
 }
