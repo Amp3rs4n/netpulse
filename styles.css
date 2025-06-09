@@ -465,6 +465,7 @@ body.light-mode .profile-button {
   box-shadow: 0 0 0.2rem #6b5afc;
 }
 
+a.btn-small.history-btn,
 .btn-small.history-btn {
   background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   color: #fff !important;
