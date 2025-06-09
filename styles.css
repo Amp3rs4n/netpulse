@@ -15,12 +15,12 @@
 }
 
 .light-mode {
-  --color-bg-start: #f4f4f8;
-  --color-bg-end: #ffffff;
-  --color-text: #1b1b2f;
-  --color-primary: #4e3dd1;
-  --color-accent: #3b2b90;
-  --color-button: #4e5ed1;
+  --color-bg-start: #e9e6ff;   /* світлий фіолетовий фон (gradients start) */
+  --color-bg-end: #f0efff;     /* майже білий фон з легким фіолетовим відтінком (gradients end) */
+  --color-text: #2a214c;       /* основний колір тексту в світлій темі (темно-фіолетовий) */
+  --color-primary: #4e3dd1;    /* основний акцентний колір (темніший фіолетовий для читабельності) */
+  --color-accent: #3b2b90;     /* додатковий акцентний колір */
+  --color-button: #4e5ed1;     /* колір тіні для кнопок (дещо світліший від primary) */
 }
 
 * {
@@ -281,43 +281,43 @@ button:active {
 
 @media (max-width: 768px) {
   .card,
-  .horizontal-section,
+  .vertical-section,
   .section {
     flex-direction: column;
     align-items: center;
   }
 
-  .horizontal-section .btn {
+  .vertical-section .btn {
     width: 100%;
   }
 }
 
 /* 🌞 Light mode */
 body.light-mode {
-  background: linear-gradient(135deg, #e9e6ff, #f0efff)!important;
-  color: #2a214c;
+  background: linear-gradient(135deg, var(--color-bg-start), var(--color-bg-end));
+  color: var(--color-text);
 }
 
 body.light-mode h1 {
   color: #222;
-  text-shadow: none; /* 🟢 прибирає неонову тінь */
+  text-shadow: none; /* прибираємо неонову тінь для чіткості на світлому тлі */
 }
 
 body.light-mode h2,
 body.light-mode p,
 body.light-mode .value,
 body.light-mode .label {
-  color: #2a214c;
+  color: var(--color-text); /* темно-фіолетовий текст для заголовків 2-го рівня, абзаців, міток і значень */
 }
 
 body.light-mode .card,
 body.light-mode .section,
 body.light-mode .feature-card,
-body.light-mode .horizontal-section,
+body.light-mode .vertical-section,
 body.light-mode .speed-card,
 body.light-mode .result-row {
-  background-color: rgba(160, 140, 255, 0.07); /* легкий фіолетовий */
-  box-shadow: 0 0 10px rgba(160, 140, 255, 0.2);
+  background-color: rgba(160, 140, 255, 0.10); /* легкий фіолетовий фон панелей (прозорість 0.10) */
+  box-shadow: 0 0 10px rgba(160, 140, 255, 0.25); /* м'яка фіолетова тінь для панелей */
 }
 
 
@@ -328,7 +328,7 @@ body.light-mode canvas {
 }
 
 body.light-mode .btn {
-  background: linear-gradient(135deg, #6b5afc, #5f3bb7);
+  background: linear-gradient(135deg, #6b5afc, #5f3bb7); /* яскравий градієнт кнопок (неоновий фіолетовий) */
   color: #fff;
   box-shadow: 0 0 0.25rem #6b5afc;
 }
@@ -339,20 +339,36 @@ body.light-mode .btn:hover {
 }
 
 body.light-mode .footer {
-  background-color: #f2f2f2;
+  background-color: rgba(255, 255, 255, 0.8); /* напівпрозорий світлий фон для футера з ефектом розмиття */
   color: #555;
   border-top: 1px solid #ccc;
+  /* backdrop-filter: blur(4px);  розмиття фону залишається увімкненим із базових стилів */
 }
 
-body.light-mode .footer a {
+body.light-mode .footer a:not(.btn) {
   color: #777;
 }
 
-body.light-mode .footer a:hover {
+body.light-mode .footer a:not(.btn):hover {
   color: #000;
   text-shadow: 0 0 4px #999;
 }
 
+@media (min-width: 1200px) {
+  body.light-mode {
+    /* трохи насиченіший фіолетовий фон на десктопах */
+    background: linear-gradient(135deg, #e3dcff, #eae8ff);
+  }
+  body.light-mode .card,
+  body.light-mode .section,
+  body.light-mode .feature-card,
+  body.light-mode .horizontal-section,
+  body.light-mode .speed-card,
+  body.light-mode .result-row {
+    background-color: rgba(160, 140, 255, 0.12); /* більш помітний фіолетовий відтінок панелей */
+    box-shadow: 0 0 15px rgba(160, 140, 255, 0.3); /* дещо сильніша тінь для панелей */
+  }
+}
 
 canvas {
   background-color: rgba(255, 255, 255, 0.02);
