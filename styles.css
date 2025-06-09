@@ -11,6 +11,7 @@
   --color-text: #f0f0f0;
   --color-button: #667eea;
   --spacing: 1rem;
+  --color-text-desktop: #ccc;
 }
 
 .light-mode {
@@ -58,6 +59,13 @@ body {
   animation: fadeIn 0.6s ease-in-out;
 }
 
+/* 🔧 Додано адаптивний контраст тексту для десктопу */
+@media (min-width: 1200px) {
+  body {
+    color: #d0d0d0;
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -84,9 +92,7 @@ h1 {
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--color-text);
-  text-shadow:
-    0 0 8px var(--color-primary),
-    0 0 16px var(--color-primary);
+  text-shadow: 0 0 4px var(--color-primary);
   margin-bottom: 1.5rem;
 }
 
