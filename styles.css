@@ -451,20 +451,32 @@ body.light-mode .logout-btn:hover {
 }
 
 .google-login {
-  background-color: #fff;
-  color: #333;
-  border: 1px solid #ddd;
+  background: linear-gradient(135deg, #6b5afc, #5f3bb7);
+  color: #fff;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.45rem 1rem;
   font-weight: 600;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 0.25rem #6b5afc;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
+
 .google-login:hover {
-  background-color: #f5f5f5;
-  box-shadow: 0 0 0.5rem rgba(66, 133, 244, 0.3);
+  background: linear-gradient(135deg, #5f3bb7, #6b5afc);
+  box-shadow: 0 0 1rem #6b5afc;
+  transform: scale(1.05);
+}
+
+.google-login img {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+  margin-right: 0.5rem;
 }
 
 .profile-button {
