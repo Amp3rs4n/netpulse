@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const pingLabels = [];
   let pingIndex = 0;
 
+  const userEmail = localStorage.getItem("netpulse_user_email");
+
   let pingChart;
   if (pingChartCtx) {
     pingChart = new Chart(pingChartCtx, {
@@ -74,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
         pingChart.update();
       }
 
-      if (isMobile) console.log(`📱 Ping #${i + 1}: ${ping} ms`);
       await delay(300);
     }
 
@@ -85,18 +86,24 @@ document.addEventListener("DOMContentLoaded", () => {
     pingEl.textContent = isNaN(avgPing) ? "N/A" : avgPing.toFixed(2) + " ms";
     jitterEl.textContent = isNaN(jitter) ? "N/A" : jitter.toFixed(2) + " ms";
 
-    // Збереження на бекенд
-    fetch("https://netpulse-server.onrender.com/api/results", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        ping: avgPing,
-        jitter: jitter,
-        timestamp: new Date().toISOString()
-      })
-    }).catch(err => console.error("❌ Помилка збереження пінгу:", err));
+    if (!userEmail) {
+      console.warn("Користувач не авторизований — пінг не буде збережено.");
+    } else {
+      fetch("https://netpulse-server.onrender.com/api/results", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          ping: avgPing,
+          jitter: jitter,
+          timestamp: new Date().toISOString(),
+          ip: null,
+          download: null,
+          upload: null,
+          email: userEmail
+        })
+      }).catch(err => console.error("❌ Помилка збереження пінгу:", err));
+    }
 
     startBtn.disabled = false;
     startBtn.innerHTML = "Розпочати перевірку";
@@ -136,17 +143,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         pc.createDataChannel("ping");
-
         pc.onicecandidate = (e) => {
           if (!e.candidate) finalize(true);
         };
-
         pc.oniceconnectionstatechange = () => {
           if (["failed", "disconnected", "closed"].includes(pc.iceConnectionState)) {
             finalize(false);
           }
         };
-
         pc.onicegatheringstatechange = () => {
           if (pc.iceGatheringState === "complete") finalize(true);
         };
