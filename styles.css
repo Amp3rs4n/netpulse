@@ -288,7 +288,7 @@ button:active {
 
 /* 🌞 Light mode */
 body.light-mode {
-  background: linear-gradient(135deg, #f4f4f8, #e0e0e0);
+  background: linear-gradient(135deg, #f4f4f8, #e0e0e0)!important;
   color: #222;
 }
 
