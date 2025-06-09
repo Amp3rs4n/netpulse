@@ -25,10 +25,31 @@ export function setupLoginButton(buttonId = "loginBtn") {
   if (!loginBtn) return;
 
   if (user?.email) {
+    // Кнопка профілю
     loginBtn.textContent = `👤 ${user.name?.split(" ")[0] || "Користувач"}`;
     loginBtn.className = "btn btn-small profile-button";
     loginBtn.disabled = true;
+
+    // Кнопка виходу
+    const logoutBtn = document.createElement("button");
+    logoutBtn.textContent = "⎋ Вийти";
+    logoutBtn.className = "btn btn-small logout-btn";
+    logoutBtn.style.marginLeft = "0.5rem";
+
+    logoutBtn.addEventListener("click", () => {
+      const confirmed = confirm("Ви справді бажаєте вийти з акаунта?");
+      if (!confirmed) return;
+
+      localStorage.removeItem("netpulse_user_email");
+      localStorage.removeItem("netpulse_user_name");
+      localStorage.removeItem("netpulse_user_photo");
+
+      window.location.href = "index.html";
+    });
+
+    loginBtn.parentNode.insertBefore(logoutBtn, loginBtn.nextSibling);
   } else {
+    // Кнопка Google логіна
     loginBtn.className = "btn btn-small google-login";
     loginBtn.innerHTML = `
       <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" style="width: 1rem; vertical-align: middle; margin-right: 0.5rem;">
@@ -41,3 +62,4 @@ export function setupLoginButton(buttonId = "loginBtn") {
 
   return user;
 }
+

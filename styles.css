@@ -425,6 +425,31 @@ canvas {
   box-shadow: 0 0 0.75rem var(--color-button);
 }
 
+.logout-btn {
+  background: transparent;
+  border: 1px solid var(--color-button);
+  color: var(--color-text);
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0.75rem var(--color-button);
+}
+
+body.light-mode .logout-btn {
+  border: 1px solid var(--color-accent);
+  color: #2a214c;
+}
+
+body.light-mode .logout-btn:hover {
+  background-color: rgba(160, 140, 255, 0.1);
+}
+
 .google-login {
   background-color: #fff;
   color: #333;
