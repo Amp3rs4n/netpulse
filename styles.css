@@ -464,3 +464,27 @@ body.light-mode .profile-button {
   color: #fff;
   box-shadow: 0 0 0.2rem #6b5afc;
 }
+
+.btn-small.history-btn {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: #fff !important;
+  box-shadow: 0 0 0.2rem var(--color-button);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-small.history-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0.75rem var(--color-button);
+}
+
+body.light-mode .btn-small.history-btn {
+  background: linear-gradient(135deg, #6b5afc, #5f3bb7);
+  box-shadow: 0 0 0.2rem #6b5afc;
+}
