@@ -26,9 +26,14 @@ export function setupLoginButton(buttonId = "loginBtn") {
 
   if (user?.email) {
     loginBtn.textContent = `👤 ${user.name?.split(" ")[0] || "Користувач"}`;
+    loginBtn.className = "btn btn-small profile-button";
     loginBtn.disabled = true;
-    loginBtn.style.opacity = 0.7;
   } else {
+    loginBtn.className = "btn btn-small google-login";
+    loginBtn.innerHTML = `
+      <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" style="width: 1rem; vertical-align: middle; margin-right: 0.5rem;">
+      Увійти через Google
+    `;
     loginBtn.addEventListener("click", () => {
       window.location.href = "https://netpulse-server.onrender.com/auth/google";
     });
