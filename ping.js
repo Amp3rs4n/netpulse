@@ -9,14 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const userEmail = localStorage.getItem("netpulse_user_email");
 
-  if (!userEmail) {
-    startBtn.disabled = true;
-    pingEl.textContent = "—";
-    jitterEl.textContent = "—";
-    alert("Щоб пройти перевірку — авторизуйтесь через Google");
-    return;
-  }
-
   const textColor = getComputedStyle(document.documentElement).getPropertyValue('--color-text') || '#fff';
 
   const pingChart = pingChartCtx

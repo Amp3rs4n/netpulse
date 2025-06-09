@@ -10,14 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const storedEmail = localStorage.getItem("netpulse_user_email");
-  if (!storedEmail) {
-    startBtn.disabled = true;
-    downloadEl.textContent = "—";
-    uploadEl.textContent = "—";
-    alert("Щоб пройти тест — авторизуйтесь через Google");
-    return;
-  }
+  const userEmail = localStorage.getItem("netpulse_user_email");
 
   const downloadData = [], uploadData = [];
   const downloadLabels = [], uploadLabels = [];
@@ -133,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ip: null,
         ping: null,
         jitter: null,
-        email: storedEmail
+        email: userEmail
       })
     }).then(res => {
       if (!res.ok) throw new Error("Неможливо зберегти результат");
