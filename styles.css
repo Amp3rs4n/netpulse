@@ -136,7 +136,7 @@ p {
   justify-content: center;
 }
 
-.horizontal-section {
+.vertical-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
