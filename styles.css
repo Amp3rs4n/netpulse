@@ -466,6 +466,11 @@ body.light-mode .profile-button {
 }
 
 a.btn-small.history-btn,
+a.btn-small.history-btn,
+a.btn-small.history-btn:visited,
+a.btn-small.history-btn:active {
+  color: #ffffff !important;
+}
 .btn-small.history-btn {
   background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   color: #fff !important;
@@ -488,4 +493,12 @@ a.btn-small.history-btn,
 body.light-mode .btn-small.history-btn {
   background: linear-gradient(135deg, #6b5afc, #5f3bb7);
   box-shadow: 0 0 0.2rem #6b5afc;
+}
+
+body.light-mode a.btn-small.history-btn {
+  color: #fff !important;
+}
+
+body.light-mode a.btn-small.history-btn:hover {
+  box-shadow: 0 0 0.75rem var(--color-button);
 }
