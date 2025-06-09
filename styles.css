@@ -161,6 +161,7 @@ p {
   align-items: center;
   justify-content: center;
   animation: fadeIn 0.6s ease-in-out;
+  flex: 1 0 auto;
 }
 
 .card {
@@ -242,6 +243,8 @@ button:active {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   width: 100%;
   z-index: 10;
+  flex-shrink: 0;
+  margin-top: auto;
 }
 
 .footer a {
@@ -300,7 +303,7 @@ body.light-mode .label {
 body.light-mode .card,
 body.light-mode .section,
 body.light-mode .feature-card,
-body.light-mode .horizontal-section,
+body.light-mode .vertical-section,
 body.light-mode .speed-card,
 body.light-mode .result-row {
   background-color: rgba(0, 0, 0, 0.03);
